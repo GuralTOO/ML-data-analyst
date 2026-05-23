@@ -187,6 +187,37 @@ export function useAgentChat({ sessionId = null, onSessionMinted } = {}) {
     };
   }, [sessionId, datasetAgents]);
 
+  // During a root-agent turn, a dataset sub-agent can be created before its
+  // own model loop emits child events, especially when it is queued behind a
+  // per-dataset lock. Merge backend-known sub-agents while the root stream is
+  // active so the right panel is not dependent on one event arriving in time.
+  useEffect(() => {
+    if (!sessionId || isMockMode() || chatStatus !== 'streaming') return undefined;
+
+    let cancelled = false;
+    const refreshSubAgents = async () => {
+      try {
+        const data = await getSession(sessionId);
+        if (cancelled || sessionIdRef.current !== sessionId) return;
+        const serverAgents = normalizeServerSubAgents(data.sub_agents || []);
+        if (Object.keys(serverAgents).length === 0) return;
+        setDatasetAgents(prev => ({ ...prev, ...serverAgents }));
+        const firstLiveId = Object.values(serverAgents).find(a => a.status === 'running')?.id;
+        const firstAgentId = Object.keys(serverAgents)[0];
+        setOpenDatasetId(prev => prev || firstLiveId || firstAgentId || null);
+      } catch (err) {
+        if (!cancelled) console.error('[useAgentChat] streaming sub-agent refresh failed:', err);
+      }
+    };
+
+    refreshSubAgents();
+    const timer = window.setInterval(refreshSubAgents, 2000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [sessionId, chatStatus]);
+
   // ---------------- sub-agent state helpers ----------------
 
   // Merge updates into a sub-agent entry. If `seed` is provided and no entry

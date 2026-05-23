@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable
 
-from agent_core import Agent, OpenRouterProvider
+from agent_core import Agent, Event, EventType, OpenRouterProvider, get_event_bus
 
 from backend.agents import agent_registry
 from backend.agents.sub_agent_manager import (
@@ -225,6 +225,12 @@ def make_dataset_message_tool(
         )
         child = managed.agent
         child_session_id = managed.sub_session_id
+        child_prompt = message
+        if created:
+            child_prompt = f"You are analyzing dataset {repo_id}.\n\n{message}"
+        if ctx is not None:
+            context_text = json.dumps(ctx, indent=2, sort_keys=True, default=str)
+            child_prompt = f"Context:\n{context_text}\n\n{child_prompt}"
 
         agent_registry.register(
             child.instance_id,
@@ -235,12 +241,30 @@ def make_dataset_message_tool(
             turn_id=turn_id_getter() if turn_id_getter else None,
         )
         try:
-            child_prompt = message
-            if created:
-                child_prompt = f"You are analyzing dataset {repo_id}.\n\n{message}"
-            if ctx is not None:
-                context_text = json.dumps(ctx, indent=2, sort_keys=True, default=str)
-                child_prompt = f"Context:\n{context_text}\n\n{child_prompt}"
+            frame = {
+                "type": "agent_start",
+                "payload": {
+                    "agent_id": child.instance_id,
+                    "agent_type": getattr(child, "name", "dataset_analysis"),
+                    "parent_agent": parent_agent,
+                    "agent_session_id": child_session_id,
+                    "prompt": child_prompt,
+                    "model": getattr(child, "model_name", None),
+                },
+            }
+            sub_agent_sessions.record_frame(child_session_id, frame)
+            get_event_bus().emit(
+                Event(
+                    type=EventType.AGENT_START,
+                    agent=child.instance_id,
+                    agent_type=getattr(child, "name", "dataset_analysis"),
+                    parent_agent=parent_agent,
+                    details={
+                        "prompt": child_prompt,
+                        "model": getattr(child, "model_name", None),
+                    },
+                )
+            )
             with dataset_work_locks.acquire(
                 repo_id,
                 chat_session_id=session_id,

@@ -1,6 +1,6 @@
 {
   "repo_id": "sensenova/SenseNova-SI-8M",
-  "profiled_at": "2026-05-23T20:05:44Z",
+  "profiled_at": "2026-05-23T20:21:50Z",
   "requested_mode": "auto",
   "clickhouse_mode": "local",
   "clickhouse_runtime": {
@@ -11,14 +11,14 @@
   "dataset_session": {
     "repo_id": "sensenova/SenseNova-SI-8M",
     "container_name": "dataset-sensenova-sensenova-si-8m-20bacd0d92",
-    "state": "active",
-    "created_at": "2026-05-23T16:55:51Z",
-    "last_interaction_at": "2026-05-23T20:05:36Z",
-    "last_interaction": "profile:auto",
-    "expires_at": "2026-05-23T20:15:36Z",
-    "idle_ttl_seconds": 600,
-    "interactions": 5,
     "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/sensenova-sensenova-si-8m-20bacd0d92881ab2.json",
+    "state": "active",
+    "created_at": "2026-05-23T20:18:35Z",
+    "last_interaction_at": "2026-05-23T20:21:45Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T20:31:45Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 2,
     "worker": {
       "ok": false,
       "started": false,
@@ -89,7 +89,30 @@
       ],
       "features": [
         {
-          "error": "HF datasets-server rows failed with HTTP 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n</body>\r\n</html>\r\n"
+          "feature_idx": 0,
+          "name": "id",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "conversations",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "image",
+          "type": {
+            "feature": {
+              "_type": "Image"
+            },
+            "_type": "List"
+          }
         }
       ],
       "columns": [
@@ -98,31 +121,123 @@
           "type": "Nullable(Int64)",
           "semantic_role": "identifier",
           "profile_mode": "sample",
-          "sample_size": 0,
+          "sample_size": 3,
           "nulls_sample": 0,
-          "sample_values": []
+          "sample_values": [
+            5363900,
+            933912,
+            209805
+          ]
         },
         {
           "name": "conversations",
           "type": "Nullable(String)",
           "semantic_role": "conversation",
           "profile_mode": "sample",
-          "sample_size": 0,
+          "sample_size": 3,
           "nulls_sample": 0,
-          "sample_values": [],
-          "empty_sample": 0
+          "sample_values": [
+            "[{\"from\": \"human\", \"value\": \"<image>\\nWhat number of big objects are red metal things or balls?\"}, {\"from\": \"gpt\", \"value\": \"3\"}]",
+            "[{\"from\": \"human\", \"value\": \"<image> <image>\\n These captures present the same scene in order. \\n Assume I am the photographer of image 1. Where is the camera of image 2 located? \\n Options: A. towards left-forward \\nB. right forward side \\nC. right & backward \\nD. left backward side \\n Answer with the option's letter from the given choices directly.\"}, {\"from\": \"gpt\", \"value\": \"B. right forward side\"}]",
+            "[{\"from\": \"human\", \"value\": \"<image> How far away from the camera is the nearest point on `door`? Give the answer in meters.\"}, {\"from\": \"gpt\", \"value\": \"0.78\"}]"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 129,
+          "max_length_sample": 406,
+          "avg_length_sample": 232.0
         },
         {
           "name": "image",
           "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
           "semantic_role": "image",
           "profile_mode": "sample",
-          "sample_size": 0,
+          "sample_size": 3,
           "nulls_sample": 0,
-          "sample_values": []
+          "sample_values": [
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/0/image/image-1d100e9.png?Expires=1779571308&Signature=ugFCMbVS78-OSwTZWorP03hFmHufwa6Jr92bX1V49rBtpsksqmix0DtmUwNfvYBnsvAfvnmQ6i~0CJlj-p3mKnTJTFJIFJy1SEfA4pYUi4mK43QEPS7lRBdp2L~3WT7rQzGxEbKLO5HJuersi3yA1pkfIBwNT4KVfFdhOkt6na8V4lW1RZL7v732fAYhXcfxpZInv~qZrL8wXTOHvm5uAU1pf5-9Z6M~GA1QxsK57uHBZKsyN8i4W2tFzG3FI9ne9hUJ6j-uzvctwPp~HtzS-msB8i4fgi~flJWCloTEgE~uoTbeP... <truncated 24 chars>",
+                "height": 320,
+                "width": 480
+              }
+            ],
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/1/image/image-1d100e9.jpg?Expires=1779571308&Signature=RYYn8JhiKkI34y2v8TawVZnQMCibdQl0oa5TlSQTAza-i-DfJ3K~evRjeJi11Mb-PGZDKXXj7cmyVMbXabojwaeL95AXQUnLF~oVS7YTqt9jBEsXYKP5Q0cWdbmT89GFcCB1FNH0xVnouswcd0ABijdSN4rvycl7dmAnLgt2WMf5CUSfuPrA6MzjmXd40lfC2Dyt3hI4khbN4vIxo4WIXCxSpf3dfSIgKTcHDemFNLeZJSO9VEZtGgzanWK8mgBGsa0sMy9PcIQau0pls5mpP1KPoXIfbtG3s9FDK472xF6O4ckja... <truncated 24 chars>",
+                "height": 1440,
+                "width": 1920
+              },
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/1/image/image-1d300ea.jpg?Expires=1779571308&Signature=BgpdKsShCIEyV8QEWDPcRAEwXiOnlmEo7vP-dyn~e-PpbCKks6BM37SXaFHQdQ9b3sdYitIPsTDsxxVmmKPuw1g-f5ZPeYbTvID3a6~nLXOpmrz4SuRQJ6Y40~R3EE4FDdTY9BUTe9wpw4xsSxmbZcH70aK5yJf-r5CXIvOIMHgqvoXaeBy2DseLKbotyiwYsQ8hDMQvtA9BuadG46aeRk4NQcGDl-a7zZ4J8mfDLtiRbouuLQJjS4pZ1PmHeRZOfboe61uyoLRhBUNooHzgodig2g6hfrvaVudiEtdFeO8w24xA6... <truncated 24 chars>",
+                "height": 1440,
+                "width": 1920
+              }
+            ],
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/2/image/image-1d100e9.jpg?Expires=1779571308&Signature=ARvmMNwEFzCIc2thEyOWMoi2x~G7JalKo2m1Ii1qBmiRYZENKl10W-sR8O6Cj5YXYp09guH2N4h2yQQexHM2CC6Ks2z5IF0KYTJsQY2NX5mQ2FtvjtodQ50LmmPyn2uF-ftaQvrQqiibpRob8LKOLUHGVcia6VXmxt0I4OVafqFo~JPK59L6tqqyabtF6Wj9w4GlWcUPqa3TvM1zExN9MQ0hxGcwlhs5gnDtgXu35S5ir-MeGR71v2pUfUt79twedi4UN7dDYIVASeaHj8bLEe2HZJG7UlSNudXHQL7rmpsIH6Z-e... <truncated 24 chars>",
+                "height": 968,
+                "width": 1296
+              }
+            ]
+          ],
+          "min_items_sample": 1,
+          "max_items_sample": 2,
+          "avg_items_sample": 1.3333333333333333
         }
       ],
-      "sample_rows": [],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "id": 5363900,
+            "conversations": "[{\"from\": \"human\", \"value\": \"<image>\\nWhat number of big objects are red metal things or balls?\"}, {\"from\": \"gpt\", \"value\": \"3\"}]",
+            "image": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/0/image/image-1d100e9.png?Expires=1779571308&Signature=ugFCMbVS78-OSwTZWorP03hFmHufwa6Jr92bX1V49rBtpsksqmix0DtmUwNfvYBnsvAfvnmQ6i~0CJlj-p3mKnTJTFJIFJy1SEfA4pYUi4mK43QEPS7lRBdp2L~3WT7rQzGxEbKLO5HJuersi3yA1pkfIBwNT4KVfFdhOkt6na8V4lW1RZL7v732fAYhXcfxpZInv~qZrL8wXTOHvm5uAU1pf5-9Z6M~GA1QxsK57uHBZKsyN8i4W2tFzG3FI9ne9hUJ6j-uzvctwPp~HtzS-msB8i4fgi~flJWCloTEgE~uoTbeP... <truncated 66 chars>",
+                "height": 320,
+                "width": 480
+              }
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "id": 933912,
+            "conversations": "[{\"from\": \"human\", \"value\": \"<image> <image>\\n These captures present the same scene in order. \\n Assume I am the photographer of image 1. Where is the camera of image 2 located? \\n Options: A. towards left-forward \\nB. right forward side \\nC. right & backward \\nD. left backward side \\n Answer with the option's letter from the given choices directly.\"}, {\"from\": \"gpt\", \"value\": \"B. right forward side\"}]",
+            "image": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/1/image/image-1d100e9.jpg?Expires=1779571308&Signature=RYYn8JhiKkI34y2v8TawVZnQMCibdQl0oa5TlSQTAza-i-DfJ3K~evRjeJi11Mb-PGZDKXXj7cmyVMbXabojwaeL95AXQUnLF~oVS7YTqt9jBEsXYKP5Q0cWdbmT89GFcCB1FNH0xVnouswcd0ABijdSN4rvycl7dmAnLgt2WMf5CUSfuPrA6MzjmXd40lfC2Dyt3hI4khbN4vIxo4WIXCxSpf3dfSIgKTcHDemFNLeZJSO9VEZtGgzanWK8mgBGsa0sMy9PcIQau0pls5mpP1KPoXIfbtG3s9FDK472xF6O4ckja... <truncated 66 chars>",
+                "height": 1440,
+                "width": 1920
+              },
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/1/image/image-1d300ea.jpg?Expires=1779571308&Signature=BgpdKsShCIEyV8QEWDPcRAEwXiOnlmEo7vP-dyn~e-PpbCKks6BM37SXaFHQdQ9b3sdYitIPsTDsxxVmmKPuw1g-f5ZPeYbTvID3a6~nLXOpmrz4SuRQJ6Y40~R3EE4FDdTY9BUTe9wpw4xsSxmbZcH70aK5yJf-r5CXIvOIMHgqvoXaeBy2DseLKbotyiwYsQ8hDMQvtA9BuadG46aeRk4NQcGDl-a7zZ4J8mfDLtiRbouuLQJjS4pZ1PmHeRZOfboe61uyoLRhBUNooHzgodig2g6hfrvaVudiEtdFeO8w24xA6... <truncated 66 chars>",
+                "height": 1440,
+                "width": 1920
+              }
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "id": 209805,
+            "conversations": "[{\"from\": \"human\", \"value\": \"<image> How far away from the camera is the nearest point on `door`? Give the answer in meters.\"}, {\"from\": \"gpt\", \"value\": \"0.78\"}]",
+            "image": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/sensenova/SenseNova-SI-8M/--/2f1c0b6136417f5e2423aff839086636858de3f0/--/preview/train/2/image/image-1d100e9.jpg?Expires=1779571308&Signature=ARvmMNwEFzCIc2thEyOWMoi2x~G7JalKo2m1Ii1qBmiRYZENKl10W-sR8O6Cj5YXYp09guH2N4h2yQQexHM2CC6Ks2z5IF0KYTJsQY2NX5mQ2FtvjtodQ50LmmPyn2uF-ftaQvrQqiibpRob8LKOLUHGVcia6VXmxt0I4OVafqFo~JPK59L6tqqyabtF6Wj9w4GlWcUPqa3TvM1zExN9MQ0hxGcwlhs5gnDtgXu35S5ir-MeGR71v2pUfUt79twedi4UN7dDYIVASeaHj8bLEe2HZJG7UlSNudXHQL7rmpsIH6Z-e... <truncated 66 chars>",
+                "height": 968,
+                "width": 1296
+              }
+            ]
+          },
+          "truncated_cells": []
+        }
+      ],
       "parquet_files": {
         "count": 1,
         "filenames": [

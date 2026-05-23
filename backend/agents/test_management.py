@@ -15,6 +15,7 @@ from backend.agents.persistence import LocalSQLiteAgentStore
 from backend.agents.session_manager import DatasetChatSessionManager
 from backend.agents.sub_agent_manager import (
     DatasetWorkLockManager,
+    dataset_work_locks,
     dataset_sub_session_id,
     extract_repo_id,
     sub_agent_sessions,
@@ -80,6 +81,7 @@ class DatasetAnalysisDelegationTests(unittest.TestCase):
     def tearDown(self) -> None:
         agent_registry.clear()
         sub_agent_sessions.clear_all()
+        dataset_work_locks.clear()
 
     def test_message_tool_reuses_persistent_dataset_child(self) -> None:
         created = []
@@ -129,6 +131,71 @@ class DatasetAnalysisDelegationTests(unittest.TestCase):
         self.assertIn("You are analyzing dataset org/b.", third)
         self.assertIsNone(agent_registry.lookup(created[0].instance_id))
         self.assertIsNone(agent_registry.lookup(created[1].instance_id))
+
+    def test_message_tool_surfaces_child_before_dataset_lock_is_available(self) -> None:
+        created = []
+
+        class FakeChild:
+            name = "dataset_analysis"
+            model_name = "test-model"
+
+            def __init__(
+                self,
+                *,
+                session_id: str,
+                conversation_store=None,
+                parent_agent=None,
+                cancel_event=None,
+            ):
+                self.session_id = session_id
+                self.conversation_store = conversation_store
+                self.parent_agent = parent_agent
+                self.cancel_event = cancel_event
+                self.instance_id = f"child_{len(created)}"
+                created.append(self)
+
+            def run(self, task: str) -> str:
+                return f"ran:{task}"
+
+        sub_session_id = dataset_sub_session_id("chat-1", "org/blocked")
+        lock = dataset_work_locks.lock_for("org/blocked")
+        lock.acquire()
+        result: dict[str, str] = {}
+        error: dict[str, BaseException] = {}
+
+        def _call_tool() -> None:
+            try:
+                with patch("backend.agents.dataset_analysis.DatasetAnalysisAgent", FakeChild):
+                    tool = make_dataset_message_tool(
+                        session_id="chat-1",
+                        parent_agent="dataset_chat_chat-1",
+                        turn_id_getter=lambda: "turn-1",
+                    )
+                    result["value"] = tool("agent_DS:org/blocked", "analyze while queued")
+            except BaseException as exc:  # noqa: BLE001
+                error["value"] = exc
+
+        thread = threading.Thread(target=_call_tool)
+        try:
+            thread.start()
+            deadline = time.monotonic() + 1.0
+            live = None
+            while time.monotonic() < deadline:
+                live = sub_agent_sessions.live_state(sub_session_id)
+                if live is not None:
+                    break
+                time.sleep(0.01)
+
+            self.assertIsNotNone(live)
+            self.assertEqual(live.status, "running")
+            self.assertIn("You are analyzing dataset org/blocked", live.prompt)
+            self.assertNotIn("value", result)
+        finally:
+            lock.release()
+            thread.join(timeout=1)
+
+        self.assertNotIn("value", error)
+        self.assertIn("ran:", result.get("value", ""))
 
 
 class DatasetWorkLockTests(unittest.TestCase):
