@@ -26,7 +26,7 @@ flowchart TB
   Rail <--> SSE
   Sessions <--> Backend
   SSE --> RootMgr --> Root
-  Root -->|"message(agent_DS:org/name)"| SubMgr --> Specialist
+  Root -->|delegate dataset| SubMgr --> Specialist
   RootMgr <--> Store
   SubMgr <--> Store
 ```
@@ -98,4 +98,3 @@ The frontend routes `dataset_chat` frames to the main thread and `dataset_analys
 | UI shell | `frontend/src/App.jsx` |
 | UI streaming state | `frontend/src/hooks/useAgentChat.js` |
 | Dataset chips | `frontend/src/components/MarkdownContent.jsx` |
-

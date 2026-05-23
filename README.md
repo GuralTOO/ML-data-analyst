@@ -11,7 +11,7 @@ flowchart LR
   API --> Root["DatasetChatAgent"]
   Root --> N["Nimble search + extract"]
   Root --> HF["Hugging Face metadata"]
-  Root -->|message(agent_DS:org/name)| DS["DatasetAnalysisAgent"]
+  Root -->|delegate dataset| DS["DatasetAnalysisAgent"]
   DS --> CH["ClickHouse over HF Parquet"]
   API --> DB["SQLite session store"]
   API --> UI

@@ -73,10 +73,10 @@ Large or unknown splits use sample profiling unless the user explicitly asks for
 
 ```mermaid
 stateDiagram-v2
-  [*] --> Active: analyze/query/touch
+  [*] --> Active: analyze or query
   Active --> Active: next interaction resets TTL
   Active --> Ejected: 10 min idle timeout
-  Ejected --> Active: new analysis/query
+  Ejected --> Active: new analysis or query
 ```
 
 Session files live in `backend/dataset_sessions/`. Profile artifacts live in `backend/profiles/`.
@@ -98,4 +98,3 @@ mkdir -p backend/bin
 cd backend/bin
 curl https://clickhouse.com/ | sh
 ```
-
