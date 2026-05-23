@@ -1,0 +1,506 @@
+{
+  "repo_id": "CASIA-IVA-Lab/SciVQR",
+  "profiled_at": "2026-05-23T19:34:19Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "CASIA-IVA-Lab/SciVQR",
+    "container_name": "dataset-casia-iva-lab-scivqr-1f7ad6481b",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/casia-iva-lab-scivqr-1f7ad6481b398198.json",
+    "state": "active",
+    "created_at": "2026-05-23T19:33:08Z",
+    "last_interaction_at": "2026-05-23T19:33:08Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T19:43:08Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 1,
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-casia-iva-lab-scivqr-1f7ad6481b",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "CASIA-IVA-Lab/SciVQR",
+    "num_bytes_original_files": 80783491,
+    "num_bytes_parquet_files": 80783491,
+    "num_bytes_memory": 90103916,
+    "num_rows": 3254,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 3254,
+      "num_columns": 10,
+      "parquet_bytes": 80783491,
+      "memory_bytes": 90103916,
+      "actual_profiled_rows": 3254,
+      "profile_mode": "full",
+      "profile_policy_reason": "under full-scan thresholds",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "pid",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "decoded_image",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "choices",
+          "type": "Array(Nullable(String))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "solution",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "question_type",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "level",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "sub-subject",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "subject",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "pid",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "question",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "decoded_image",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "choices",
+          "type": {
+            "feature": {
+              "dtype": "string",
+              "_type": "Value"
+            },
+            "_type": "List"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "answer",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "solution",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 6,
+          "name": "question_type",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 7,
+          "name": "level",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 8,
+          "name": "sub-subject",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 9,
+          "name": "subject",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "pid",
+          "type": "Nullable(Int64)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "min": 1,
+          "max": 1199,
+          "avg": 377.58973570989554,
+          "quantiles": [
+            286,
+            873.7000000000003,
+            1166.4699999999998
+          ]
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 291.78764597418564,
+          "length_quantiles": [
+            232,
+            536.7000000000003,
+            1240.8099999999954
+          ],
+          "top_values": [
+            "Each of the following diagrams shows a cross-section through a feature on the surface of the Moon (not to scale).\r\n\r\nChoose the word that correctly identifies each feature.",
+            "\\text { How many signals would you expect in the }{ }^1 \\mathrm{H} \\text { NMR spectrum of the following molecule? }",
+            "The diagram shows a stage micrometer, with divisions 0.1 mm apart, viewed through an eyepiece containing a graticule.\r\n\r\nWhat is the area of the field of view of the microscope at this magnification? $(\\pi=3.14)$",
+            "The graph shows the amount of antibody produced in response to an antigen.\r\nFrom the graph, which statement is correct?",
+            "A student used a small telescope to make some sketches of astronomical objects.\r\n(a) Identify each of the following objects from the student's sketches.\r\n(ii) A fuzzy patch of light with a tail, visible in the sky for several weeks."
+          ]
+        },
+        {
+          "name": "decoded_image",
+          "type": "Nullable(String)",
+          "semantic_role": "image",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 27988.113091579595,
+          "length_quantiles": [
+            12230,
+            67670.40000000002,
+            236436.6799999989
+          ],
+          "top_values": [
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAE4BCgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 38068 chars>",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAU+BXIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 135316 chars>",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAHSAnUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 26832 chars>",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAKWA6QDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 68588 chars>",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAJABRoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 121840 chars>"
+          ]
+        },
+        {
+          "name": "choices",
+          "type": "Array(Nullable(String))",
+          "semantic_role": "array",
+          "profile_mode": "full",
+          "nulls": 0,
+          "min_items": 0,
+          "max_items": 5,
+          "avg_items": 3.6047940995697605
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "semantic_role": "label_or_answer",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 25.173325138291332,
+          "length_quantiles": [
+            13,
+            64,
+            193.8799999999992
+          ],
+          "top_values": [
+            "4",
+            "6",
+            "2",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "name": "solution",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 1764,
+          "avg_length": 229.00368776889982,
+          "length_quantiles": [
+            0,
+            681.4000000000005,
+            1305
+          ],
+          "top_values": [
+            "",
+            "the forces are an action-reaction pair.",
+            "After reducing and solving this circuit, the current and voltage for each resistor is as follows: $\\mathrm{R}_1=0.5 \\mathrm{~A}, 2.0 \\mathrm{~V} ; \\mathrm{R}_2=0.25 \\mathrm{~A}, 1.0 \\mathrm{~V} ; \\mathrm{R}_3=0.25 \\mathrm{~A}, 2.0 \\mathrm{~V} ; \\mathrm{R}_4=0.25 \\mathrm{~A}, 2.5 \\mathrm{~V}$; $R_5=0.125 \\mathrm{~A}, 0.5 \\mathrm{~V} ; \\mathrm{R}_6=0.125 \\mathrm{~A}, 0.25 \\mathrm{~V} ; \\mathrm{R}_7=0.125 \\mathrm{~A}, 0.25 \\mathrm{~V}$",
+            "Solve for $\\mathrm{V}, \\mathrm{I}, \\& \\mathrm{P}$ for each resistor. $\\underline{\\mathrm{R}}_1=2.0 \\mathrm{~V}, 0.04 \\mathrm{~A}, 0.08 \\mathrm{~W}: \\underline{\\mathrm{R}_2}=1.0 \\mathrm{~V}, 0.02 \\mathrm{~A}, 0.02 \\mathrm{~W}$ : $\\underline{R}_3=0.4 \\mathrm{~V}, 0.0067 \\mathrm{~A}, 0.0027 \\mathrm{~W} ; \\underline{R}_4=0.4 \\mathrm{~V}, 0.0133 \\mathrm{~A}, 0.0053 \\mathrm{~W} ; \\underline{R}_5=0.6 \\mathrm{~V}, 0.02 \\mathrm{~A}, 0.012 \\mathrm{~W}$",
+            "Equating the tangential acceleration $\\left(a_t=r \\alpha\\right)$ and radial acceleration $\\left(a_r=\\frac{v^2}{r}=r \\omega^2\\right)$ with the result from constant angular acceleration kinematics: $\\omega=\\omega_0+\\alpha T \\rightarrow \\omega=\\alpha T$, we have $r \\alpha=r(\\alpha T)^2 \\rightarrow T=\\frac{1}{\\sqrt{\\alpha}}=\\frac{1}{\\sqrt{5}}=0.447 \\mathrm{~s}$."
+          ]
+        },
+        {
+          "name": "question_type",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 10.242163491087892,
+          "length_quantiles": [
+            12,
+            12,
+            12
+          ],
+          "top_values": [
+            "multi-choice",
+            "open"
+          ]
+        },
+        {
+          "name": "level",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 4.762138905961893,
+          "length_quantiles": [
+            4,
+            6,
+            6
+          ],
+          "top_values": [
+            "medium",
+            "hard",
+            "easy"
+          ]
+        },
+        {
+          "name": "sub-subject",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 15.925322679778734,
+          "length_quantiles": [
+            17,
+            23,
+            34
+          ],
+          "top_values": [
+            "Classical Mechanics",
+            "Metric Geometry -Area",
+            "Metric Geometry -Length",
+            "Electricity",
+            "Statistics"
+          ]
+        },
+        {
+          "name": "subject",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 6.473570989551321,
+          "length_quantiles": [
+            7,
+            9,
+            9
+          ],
+          "top_values": [
+            "math",
+            "physics",
+            "chemistry",
+            "biology",
+            "geography"
+          ]
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "pid": 1,
+            "question": "According to the figure (\"The Zodiac\"), in January the Sun is in the constellation\r\n",
+            "decoded_image": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAJxBGoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 108736 chars>",
+            "choices": [
+              "Cancer",
+              "Gemini",
+              "Leo",
+              "Aquarius"
+            ],
+            "answer": "Aquarius",
+            "solution": "",
+            "question_type": "multi-choice",
+            "level": "easy",
+            "sub-subject": "Stellar Astronomy",
+            "subject": "astronomy"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "pid": 2,
+            "question": "In the figure (\"Triangulation\"), using a longer baseline would result in ",
+            "decoded_image": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCALDAiYDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 66052 chars>",
+            "choices": [
+              "a less accurate distance to the tree",
+              "a more accurate distance to the tree",
+              "a smaller angle at point B",
+              "a greater distance across the river"
+            ],
+            "answer": "a smaller angle at point B",
+            "solution": "",
+            "question_type": "multi-choice",
+            "level": "easy",
+            "sub-subject": "Observational Astronomy",
+            "subject": "astronomy"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "pid": 3,
+            "question": "In the figure (\"Parallax\"), a smaller Earth would result in ",
+            "decoded_image": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAIYA5oDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi... <truncated 50668 chars>",
+            "choices": [
+              "a smaller parallax angle",
+              "a shorter distance measured to the object",
+              "a larger apparent displacement",
+              "stars appearing closer together"
+            ],
+            "answer": "a smaller parallax angle",
+            "solution": "",
+            "question_type": "multi-choice",
+            "level": "hard",
+            "sub-subject": "Observational Astronomy",
+            "subject": "astronomy"
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 6,
+        "filenames": [
+          "0000.parquet",
+          "0001.parquet",
+          "0002.parquet",
+          "0003.parquet",
+          "0004.parquet"
+        ],
+        "total_bytes": 80783491
+      }
+    }
+  ]
+}

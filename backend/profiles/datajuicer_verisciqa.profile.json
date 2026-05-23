@@ -1,0 +1,517 @@
+{
+  "repo_id": "datajuicer/VeriSciQA",
+  "profiled_at": "2026-05-23T19:33:21Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "datajuicer/VeriSciQA",
+    "container_name": "dataset-datajuicer-verisciqa-43c9c63852",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/datajuicer-verisciqa-43c9c638523377d3.json",
+    "state": "active",
+    "created_at": "2026-05-23T19:33:09Z",
+    "last_interaction_at": "2026-05-23T19:33:09Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T19:43:09Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 1,
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-datajuicer-verisciqa-43c9c63852",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "datajuicer/VeriSciQA",
+    "num_bytes_original_files": 3050003893,
+    "num_bytes_parquet_files": 3050003893,
+    "num_bytes_memory": 3711599472,
+    "num_rows": 20272,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 20272,
+      "num_columns": 10,
+      "parquet_bytes": 3050003893,
+      "memory_bytes": 3711599472,
+      "actual_profiled_rows": 20272,
+      "profile_mode": "sample",
+      "profile_policy_reason": "parquet bytes 3050003893 exceed threshold 100000000",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "image",
+          "type": "Tuple(\n    bytes Nullable(String),\n    path Nullable(String))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "options",
+          "type": "Array(Nullable(String))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "caption",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "figure_type",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "image_label",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "section",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "domain",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "question_type",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "image",
+          "type": {
+            "_type": "Image"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "question",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "options",
+          "type": {
+            "feature": {
+              "dtype": "string",
+              "_type": "Value"
+            },
+            "_type": "List"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "answer",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "caption",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "figure_type",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 6,
+          "name": "image_label",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 7,
+          "name": "section",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 8,
+          "name": "domain",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 9,
+          "name": "question_type",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "image",
+          "type": "Tuple(\n    bytes Nullable(String),\n    path Nullable(String))",
+          "semantic_role": "image",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/0/image/image.jpg?Expires=1779568392&Signature=BlKvv6XNwGxj5KsVFDM9TFO2i8mdwXM-4CzHDR7L7G-epAE5nbq~sAjl9-vqmoZYWnzOR1SwBt4S4CQnsIFjEdk8w4kmNXP1XfQOeo0rWxX~5ctX79pZxajnU7Gc6WpvSOD8qQEjE66CEAtmgIfaG4j44p3CmNCDP2mHeNOMFbuoyy85YhXCrL6Gxcx7iyPl1e6rdmCE30~WuAPKHPfg92M1l1EQAxIKWRW-USVxyvH-YgVPp6FkGPbKjDHLQ6mttiXEOMkGIJKeJfTy-T0KHNjVQJ9zHmYds6pXGZGcBqPo27tNor8yOYmeuNjyG6... <truncated 24 chars>",
+              "height": 316,
+              "width": 397
+            },
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/1/image/image.jpg?Expires=1779568392&Signature=0qLhLtHCZJ6qNuT1U-fAkGDZiTfb4WideK9UcU0GEkTP1W4N-OWy-C3zZXFiQpxu0hVsmKElyCXwsj4LiKcc2CvtJJNmvDibBxM2UnAqxhBoT0GpI3zqXifdNjPtsxCV5XfyXpvb7D4pw2-vHpVnwr5sX6qoJuDFcYeA0an734CIpItZgzOON4~JXgXUJ-hy1g~2cBz0JmrTjZpyxLkp6cSmAhqycl-CfK064bKART8dNkMUj8FPDU5mOCeNqFiedIk1XisVB9rq51qwzLo~RXyeGJ~~Qoi88QZjrGg5EVea0mMUfiGm7GL3OBY8~d... <truncated 24 chars>",
+              "height": 1502,
+              "width": 2016
+            },
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/2/image/image.jpg?Expires=1779568392&Signature=z0N9L6nigrsNX3J7cZDAliV0-LQVZEoTJOJKiqWFFqcedsf2X47FMj5ZGjsxoGdLuk2ZSlhFGpwxgNtQgdrydkSRh~XWzr6F83g7efA~iWUWLHJZdVlgJGJYMg-F98m4rn~cGxLwxlF1f2Ae1Qu2SJH64V9tUn2EYk~IhXC3nKyDrYUnaIKptlcJrNfdypZDHvdtQQTxudti66PYXg8uiucLVelY5TMHgfO3s0Tb6WBVsYxRed7eYn7Grdd1LwoGfWgeDaTiLKAo6Z4jNCCM~f1mVqAtD1n1MOpqn6q6G5qmmVHyptJF4KtdvjeVQB... <truncated 24 chars>",
+              "height": 453,
+              "width": 1661
+            }
+          ]
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "In the figure, what is the direction of the angular velocity of the flagellar bundle relative to the cell body?",
+            "At what fluorine doping level does the density anomaly in silica glass disappear according to the figure?",
+            "How many fully connected (FC) layers does the style classifier in the figure contain?"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 85,
+          "max_length_sample": 111,
+          "avg_length_sample": 100.33333333333333
+        },
+        {
+          "name": "options",
+          "type": "Array(Nullable(String))",
+          "semantic_role": "array",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            [
+              "Clockwise around the y-axis",
+              "Counter-clockwise around the y-axis",
+              "Counter-clockwise around the z-axis",
+              "Clockwise around the x-axis"
+            ],
+            [
+              "7 wt%",
+              "5 wt%",
+              "10 wt%",
+              "15 wt%"
+            ],
+            [
+              "4",
+              "2",
+              "3",
+              "5"
+            ]
+          ],
+          "min_items_sample": 4,
+          "max_items_sample": 4,
+          "avg_items_sample": 4.0
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "semantic_role": "label_or_answer",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "B",
+            "C",
+            "C"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 1,
+          "max_length_sample": 1,
+          "avg_length_sample": 1.0
+        },
+        {
+          "name": "caption",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "Set-up and notations for the mechanical model of {E. coli} swimming near a solid surface.",
+            "Change of density as a function of temperature for pure and fluorine-doped silica glass systems. Left axis indicates density for systems generated from FMP-v1 (glass-v1 and SiO$_2$-Fx) while right axis indicates density for systems obtained from FMP-v2 (glass-v2). Glass-v1 and glass-v2 both correspond to pure amorphous silica glass systems.",
+            "Architecture of style encoder for learning style representations."
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 65,
+          "max_length_sample": 342,
+          "avg_length_sample": 165.33333333333334
+        },
+        {
+          "name": "figure_type",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "Diagram",
+            "Line Plot",
+            "Diagram"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 7,
+          "max_length_sample": 9,
+          "avg_length_sample": 7.666666666666667
+        },
+        {
+          "name": "image_label",
+          "type": "Nullable(String)",
+          "semantic_role": "image",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "setup",
+            "fig1",
+            "fig2"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 4,
+          "max_length_sample": 5,
+          "avg_length_sample": 4.333333333333333
+        },
+        {
+          "name": "section",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "We model the bacterium as a single, left-handed rigid helix attached to a spherical body of radius $a$ whose center of mass is located at a distance $d$ above a solid surface, as illustrated in Fig.~\\ref{setup}; the liquid gap between the solid surface and the cell body has height $h$. The cell is assumed to be parallel to the surface and oriented in the $y$-direction. The helix is assumed to have  thickness $2r$, radius $b$, wavelength $\\lambda$, with a number $n$ of wavelengths along the helix... <truncated 26 chars>",
+            "\\subsection{Global graph of glass network} \\label{}\nThe densities of a-SiO$_2$ and F-doped a-SiO$_2$ simulated using FMP-v1 and FMP-v2 force fields are shown in Fig \\ref{fig1}. The density of glass-v1 (a-SiO$_2$ obtained with FMP-v1) decreases with increasing temperature and reaches a minimum just above 2000 K. The density then increases again until it reaches a plateau around 3500 K. In general, the density of a material monotonically decreases with increasing temperature due to positive therma... <truncated 26 chars>",
+            "The style encoder $E_z(x)$ constructs a latent style space, and then outputs a sampled style representation $z$ to the synthesizer $T$ to guide style generation. As discussed above, the generated style space via VAE network~\\cite{kingma2014auto-encoding}, usually a Gaussian distribution, may not be expressive enough to transfer the style effectively. In this paper, we resort to the IAF~\\cite{kingma2016improving, rezende2015variational}, a potent technique to construct sophisticated distributions... <truncated 26 chars>"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 526,
+          "max_length_sample": 526,
+          "avg_length_sample": 526.0
+        },
+        {
+          "name": "domain",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "cond-mat",
+            "cond-mat",
+            "cs"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 2,
+          "max_length_sample": 8,
+          "avg_length_sample": 6.0
+        },
+        {
+          "name": "question_type",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "Relational",
+            "Relational",
+            "Structural"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 10,
+          "max_length_sample": 10,
+          "avg_length_sample": 10.0
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/0/image/image.jpg?Expires=1779568392&Signature=BlKvv6XNwGxj5KsVFDM9TFO2i8mdwXM-4CzHDR7L7G-epAE5nbq~sAjl9-vqmoZYWnzOR1SwBt4S4CQnsIFjEdk8w4kmNXP1XfQOeo0rWxX~5ctX79pZxajnU7Gc6WpvSOD8qQEjE66CEAtmgIfaG4j44p3CmNCDP2mHeNOMFbuoyy85YhXCrL6Gxcx7iyPl1e6rdmCE30~WuAPKHPfg92M1l1EQAxIKWRW-USVxyvH-YgVPp6FkGPbKjDHLQ6mttiXEOMkGIJKeJfTy-T0KHNjVQJ9zHmYds6pXGZGcBqPo27tNor8yOYmeuNjyG6... <truncated 53 chars>",
+              "height": 316,
+              "width": 397
+            },
+            "question": "In the figure, what is the direction of the angular velocity of the flagellar bundle relative to the cell body?",
+            "options": [
+              "Clockwise around the y-axis",
+              "Counter-clockwise around the y-axis",
+              "Counter-clockwise around the z-axis",
+              "Clockwise around the x-axis"
+            ],
+            "answer": "B",
+            "caption": "Set-up and notations for the mechanical model of {E. coli} swimming near a solid surface.",
+            "figure_type": "Diagram",
+            "image_label": "setup",
+            "section": "We model the bacterium as a single, left-handed rigid helix attached to a spherical body of radius $a$ whose center of mass is located at a distance $d$ above a solid surface, as illustrated in Fig.~\\ref{setup}; the liquid gap between the solid surface and the cell body has height $h$. The cell is assumed to be parallel to the surface and oriented in the $y$-direction. The helix is assumed to have  thickness $2r$, radius $b$, wavelength $\\lambda$, with a number $n$ of wavelengths along the helix... <truncated 2698 chars>",
+            "domain": "cond-mat",
+            "question_type": "Relational"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/1/image/image.jpg?Expires=1779568392&Signature=0qLhLtHCZJ6qNuT1U-fAkGDZiTfb4WideK9UcU0GEkTP1W4N-OWy-C3zZXFiQpxu0hVsmKElyCXwsj4LiKcc2CvtJJNmvDibBxM2UnAqxhBoT0GpI3zqXifdNjPtsxCV5XfyXpvb7D4pw2-vHpVnwr5sX6qoJuDFcYeA0an734CIpItZgzOON4~JXgXUJ-hy1g~2cBz0JmrTjZpyxLkp6cSmAhqycl-CfK064bKART8dNkMUj8FPDU5mOCeNqFiedIk1XisVB9rq51qwzLo~RXyeGJ~~Qoi88QZjrGg5EVea0mMUfiGm7GL3OBY8~d... <truncated 53 chars>",
+              "height": 1502,
+              "width": 2016
+            },
+            "question": "At what fluorine doping level does the density anomaly in silica glass disappear according to the figure?",
+            "options": [
+              "7 wt%",
+              "5 wt%",
+              "10 wt%",
+              "15 wt%"
+            ],
+            "answer": "C",
+            "caption": "Change of density as a function of temperature for pure and fluorine-doped silica glass systems. Left axis indicates density for systems generated from FMP-v1 (glass-v1 and SiO$_2$-Fx) while right axis indicates density for systems obtained from FMP-v2 (glass-v2). Glass-v1 and glass-v2 both correspond to pure amorphous silica glass systems.",
+            "figure_type": "Line Plot",
+            "image_label": "fig1",
+            "section": "\\subsection{Global graph of glass network} \\label{}\nThe densities of a-SiO$_2$ and F-doped a-SiO$_2$ simulated using FMP-v1 and FMP-v2 force fields are shown in Fig \\ref{fig1}. The density of glass-v1 (a-SiO$_2$ obtained with FMP-v1) decreases with increasing temperature and reaches a minimum just above 2000 K. The density then increases again until it reaches a plateau around 3500 K. In general, the density of a material monotonically decreases with increasing temperature due to positive therma... <truncated 3732 chars>",
+            "domain": "cond-mat",
+            "question_type": "Relational"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/datajuicer/VeriSciQA/--/4bcedd981e57436242fa95ae07ef01ed90b52d65/--/default/train/2/image/image.jpg?Expires=1779568392&Signature=z0N9L6nigrsNX3J7cZDAliV0-LQVZEoTJOJKiqWFFqcedsf2X47FMj5ZGjsxoGdLuk2ZSlhFGpwxgNtQgdrydkSRh~XWzr6F83g7efA~iWUWLHJZdVlgJGJYMg-F98m4rn~cGxLwxlF1f2Ae1Qu2SJH64V9tUn2EYk~IhXC3nKyDrYUnaIKptlcJrNfdypZDHvdtQQTxudti66PYXg8uiucLVelY5TMHgfO3s0Tb6WBVsYxRed7eYn7Grdd1LwoGfWgeDaTiLKAo6Z4jNCCM~f1mVqAtD1n1MOpqn6q6G5qmmVHyptJF4KtdvjeVQB... <truncated 53 chars>",
+              "height": 453,
+              "width": 1661
+            },
+            "question": "How many fully connected (FC) layers does the style classifier in the figure contain?",
+            "options": [
+              "4",
+              "2",
+              "3",
+              "5"
+            ],
+            "answer": "C",
+            "caption": "Architecture of style encoder for learning style representations.",
+            "figure_type": "Diagram",
+            "image_label": "fig2",
+            "section": "The style encoder $E_z(x)$ constructs a latent style space, and then outputs a sampled style representation $z$ to the synthesizer $T$ to guide style generation. As discussed above, the generated style space via VAE network~\\cite{kingma2014auto-encoding}, usually a Gaussian distribution, may not be expressive enough to transfer the style effectively. In this paper, we resort to the IAF~\\cite{kingma2016improving, rezende2015variational}, a potent technique to construct sophisticated distributions... <truncated 2646 chars>",
+            "domain": "cs",
+            "question_type": "Structural"
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 3050003893
+      }
+    }
+  ]
+}

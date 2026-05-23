@@ -1,0 +1,385 @@
+{
+  "repo_id": "sensenova/SenseNova-SI-8M",
+  "profiled_at": "2026-05-23T20:05:44Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "sensenova/SenseNova-SI-8M",
+    "container_name": "dataset-sensenova-sensenova-si-8m-20bacd0d92",
+    "state": "active",
+    "created_at": "2026-05-23T16:55:51Z",
+    "last_interaction_at": "2026-05-23T20:05:36Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T20:15:36Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 5,
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/sensenova-sensenova-si-8m-20bacd0d92881ab2.json",
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-sensenova-sensenova-si-8m-20bacd0d92",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "sensenova/SenseNova-SI-8M",
+    "num_bytes_original_files": 1728888682,
+    "num_bytes_parquet_files": 1728888682,
+    "num_bytes_memory": 5307077747,
+    "num_rows": 8165067,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "preview",
+      "split": "train",
+      "num_rows": 1000,
+      "num_columns": 3,
+      "parquet_bytes": 877584507,
+      "memory_bytes": 877955985,
+      "actual_profiled_rows": 1000,
+      "profile_mode": "sample",
+      "profile_policy_reason": "parquet bytes 877584507 exceed threshold 100000000",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "conversations",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "image",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "error": "HF datasets-server rows failed with HTTP 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n</body>\r\n</html>\r\n"
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "Nullable(Int64)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 0,
+          "nulls_sample": 0,
+          "sample_values": []
+        },
+        {
+          "name": "conversations",
+          "type": "Nullable(String)",
+          "semantic_role": "conversation",
+          "profile_mode": "sample",
+          "sample_size": 0,
+          "nulls_sample": 0,
+          "sample_values": [],
+          "empty_sample": 0
+        },
+        {
+          "name": "image",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "semantic_role": "image",
+          "profile_mode": "sample",
+          "sample_size": 0,
+          "nulls_sample": 0,
+          "sample_values": []
+        }
+      ],
+      "sample_rows": [],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 877584507
+      }
+    },
+    {
+      "config": "full",
+      "split": "train",
+      "num_rows": 8164067,
+      "num_columns": 3,
+      "parquet_bytes": 851304175,
+      "memory_bytes": 4429121762,
+      "actual_profiled_rows": 8164067,
+      "profile_mode": "sample",
+      "profile_policy_reason": "parquet bytes 851304175 exceed threshold 100000000",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "conversations",
+          "type": "Array(Tuple(\n    `from` Nullable(String),\n    value Nullable(String)))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "image",
+          "type": "Array(Nullable(String))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "id",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "conversations",
+          "type": {
+            "feature": {
+              "from": {
+                "dtype": "string",
+                "_type": "Value"
+              },
+              "value": {
+                "dtype": "string",
+                "_type": "Value"
+              }
+            },
+            "_type": "List"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "image",
+          "type": {
+            "feature": {
+              "dtype": "string",
+              "_type": "Value"
+            },
+            "_type": "List"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "Nullable(Int64)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "name": "conversations",
+          "type": "Array(Tuple(\n    `from` Nullable(String),\n    value Nullable(String)))",
+          "semantic_role": "conversation",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and three egocentric view images labeled A, B and C, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nGive me the answer letter directly. The best answer is:"
+              },
+              {
+                "from": "gpt",
+                "value": "A"
+              }
+            ],
+            [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and four egocentric view images labeled A, B, C, and D, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nD:<image>\nAnswer with the option's letter from the given choices directly."
+              },
+              {
+                "from": "gpt",
+                "value": "C"
+              }
+            ],
+            [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and four egocentric view images labeled A, B, C, and D, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nD:<image>\nGive me the answer letter directly. The best answer is:"
+              },
+              {
+                "from": "gpt",
+                "value": "C"
+              }
+            ]
+          ],
+          "min_items_sample": 2,
+          "max_items_sample": 2,
+          "avg_items_sample": 2.0
+        },
+        {
+          "name": "image",
+          "type": "Array(Nullable(String))",
+          "semantic_role": "image",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            [
+              "images/059/034763.jpg",
+              "images/059/057207.jpg",
+              "images/059/114479.jpg",
+              "images/059/017434.jpg"
+            ],
+            [
+              "images/059/032195.jpg",
+              "images/059/019965.jpg",
+              "images/059/059689.jpg",
+              "images/059/061841.jpg",
+              "images/059/076470.jpg"
+            ],
+            [
+              "images/059/030510.jpg",
+              "images/059/091677.jpg",
+              "images/059/131285.jpg",
+              "images/059/064056.jpg",
+              "images/059/008004.jpg"
+            ]
+          ],
+          "min_items_sample": 4,
+          "max_items_sample": 5,
+          "avg_items_sample": 4.666666666666667
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "id": 0,
+            "conversations": [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and three egocentric view images labeled A, B and C, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nGive me the answer letter directly. The best answer is:"
+              },
+              {
+                "from": "gpt",
+                "value": "A"
+              }
+            ],
+            "image": [
+              "images/059/034763.jpg",
+              "images/059/057207.jpg",
+              "images/059/114479.jpg",
+              "images/059/017434.jpg"
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "id": 1,
+            "conversations": [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and four egocentric view images labeled A, B, C, and D, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nD:<image>\nAnswer with the option's letter from the given choices directly."
+              },
+              {
+                "from": "gpt",
+                "value": "C"
+              }
+            ],
+            "image": [
+              "images/059/032195.jpg",
+              "images/059/019965.jpg",
+              "images/059/059689.jpg",
+              "images/059/061841.jpg",
+              "images/059/076470.jpg"
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "id": 2,
+            "conversations": [
+              {
+                "from": "human",
+                "value": "<image> You are given one exocentric view image and four egocentric view images labeled A, B, C, and D, each captured at different timesteps in the same scene. Analyze the images carefully based on scene details, lighting, and object positions, and determine which egocentric view image correctly matches the exocentric view.\nOptions:\nA:<image>\nB:<image>\nC:<image>\nD:<image>\nGive me the answer letter directly. The best answer is:"
+              },
+              {
+                "from": "gpt",
+                "value": "C"
+              }
+            ],
+            "image": [
+              "images/059/030510.jpg",
+              "images/059/091677.jpg",
+              "images/059/131285.jpg",
+              "images/059/064056.jpg",
+              "images/059/008004.jpg"
+            ]
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 851304175
+      }
+    }
+  ]
+}

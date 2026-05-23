@@ -1,0 +1,248 @@
+{
+  "repo_id": "WaltonFuture/Multimodal-RL-Data",
+  "profiled_at": "2026-05-23T19:33:15Z",
+  "requested_mode": "sample",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "WaltonFuture/Multimodal-RL-Data",
+    "container_name": "dataset-waltonfuture-multimodal-rl-data-5ac4458d8b",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/waltonfuture-multimodal-rl-data-5ac4458d8b95abbb.json",
+    "state": "active",
+    "created_at": "2026-05-23T19:33:09Z",
+    "last_interaction_at": "2026-05-23T19:33:09Z",
+    "last_interaction": "profile:sample",
+    "expires_at": "2026-05-23T19:43:09Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 1,
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-waltonfuture-multimodal-rl-data-5ac4458d8b",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "WaltonFuture/Multimodal-RL-Data",
+    "num_bytes_original_files": 850383233,
+    "num_bytes_parquet_files": 850383233,
+    "num_bytes_memory": 2293707120,
+    "num_rows": 31818,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 31818,
+      "num_columns": 3,
+      "parquet_bytes": 850383233,
+      "memory_bytes": 2293707120,
+      "actual_profiled_rows": 31818,
+      "profile_mode": "sample",
+      "profile_policy_reason": "parquet bytes 850383233 exceed threshold 100000000",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "images",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "problem",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "images",
+          "type": {
+            "feature": {
+              "_type": "Image"
+            },
+            "_type": "List"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "problem",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "answer",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "images",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "semantic_role": "image",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/0/images/image-1d100e9.jpg?Expires=1779568391&Signature=VmdhC-jFPXL-46VEYNrOUqrqCdCZaWJ90E-pya1avEF~-QSypxr~f2K6m6CZSYmbMhM33PTWOdocD99VgtxB4vgC-MT5McGmwynR-ndFsAOqX9HMp7V3QArKbOL-E0oMtlmzhXzIUhDSUKkvnginq92Mc5wE7-HMYbZwa5qdx-RrpfNhi2vVqjcitr~V6d-qC6dkeIvZO1BBc9khPuB~~wi2WZv4TLrxPQIXBAX6Y8FU5kd8X0GZjA2LTr1G5htgaIngFkbF6wLsZdTGlvcPSc47luaEnbmGJbTslDJZ8V... <truncated 24 chars>",
+                "height": 285,
+                "width": 1041
+              }
+            ],
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/1/images/image-1d100e9.jpg?Expires=1779568391&Signature=gS7DYv9~qgi8~hioZNgJCFCzb81bxQWY1v5ayuATDyyFWptss4s~KsYVdc0aDgmJYPnu6xBIHOiMZvaYwLBxmcmR5Fc4krKjFcNVzThoD-QYgiJcy~eHOh3UF5ZZ2cE2Gezn9M8NhlB3B2NMe1hGNDjmVyUppkZI1vkQQuJMeWCcLieq5LTtP0yKG~D-WD5xKVV9d1rdpgL67b7txLKoDICSlAHDoh4FM~3MfibDj7OeJXUplsrskmSPwRHZnnWZxuhtykkQxMkJKPJ~iZ~v0F2AtLtaMYob7MfS2KXUjx... <truncated 24 chars>",
+                "height": 327,
+                "width": 1023
+              }
+            ],
+            [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/2/images/image-1d100e9.jpg?Expires=1779568391&Signature=NjLfmLcDzs9zCHtS2kHBIOs7IgZIwteTfla7PDiwRNPtaJFnpHNY-qZd7CNUZv34QNy7T81U903NQPY7GKQpxnOCSU5eqmS89sfLP6aVotYBFT86DJqbW4I4TTuMgUzZVRwYPRUHTkVEcFbwKZqzIaqNlXv6Izd2KPTMC93Z0jTeyndtRMwjHmhlncv1PloEh3FtAaSR6ERCXXHJ31cZ295NorWqODLMyGAwr9jEDLvHeFh7QmYr7sJKqkRjVdVw1jQ0Z0Vwf1yfzLRPGxoiNXUY5M70AiUucXceail~C2... <truncated 24 chars>",
+                "height": 207,
+                "width": 477
+              }
+            ]
+          ],
+          "min_items_sample": 1,
+          "max_items_sample": 1,
+          "avg_items_sample": 1.0
+        },
+        {
+          "name": "problem",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "<image>Question: The table shows some of the results of a survey by radiostation KAMC. What percentage of the males surveyed listen to the station?",
+            "<image>Question: Jeff rotates spinners P, Q and R and adds the resulting numbers. What is the probability that his sum is an odd number?",
+            "<image>Question: In the multiplication problem below, A, B, C, and D are different digits. What is A+B?"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 103,
+          "max_length_sample": 147,
+          "avg_length_sample": 128.66666666666666
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "semantic_role": "label_or_answer",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "75",
+            "1/3",
+            "1"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 1,
+          "max_length_sample": 3,
+          "avg_length_sample": 2.0
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/0/images/image-1d100e9.jpg?Expires=1779568391&Signature=VmdhC-jFPXL-46VEYNrOUqrqCdCZaWJ90E-pya1avEF~-QSypxr~f2K6m6CZSYmbMhM33PTWOdocD99VgtxB4vgC-MT5McGmwynR-ndFsAOqX9HMp7V3QArKbOL-E0oMtlmzhXzIUhDSUKkvnginq92Mc5wE7-HMYbZwa5qdx-RrpfNhi2vVqjcitr~V6d-qC6dkeIvZO1BBc9khPuB~~wi2WZv4TLrxPQIXBAX6Y8FU5kd8X0GZjA2LTr1G5htgaIngFkbF6wLsZdTGlvcPSc47luaEnbmGJbTslDJZ8V... <truncated 73 chars>",
+                "height": 285,
+                "width": 1041
+              }
+            ],
+            "problem": "<image>Question: The table shows some of the results of a survey by radiostation KAMC. What percentage of the males surveyed listen to the station?",
+            "answer": "75"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/1/images/image-1d100e9.jpg?Expires=1779568391&Signature=gS7DYv9~qgi8~hioZNgJCFCzb81bxQWY1v5ayuATDyyFWptss4s~KsYVdc0aDgmJYPnu6xBIHOiMZvaYwLBxmcmR5Fc4krKjFcNVzThoD-QYgiJcy~eHOh3UF5ZZ2cE2Gezn9M8NhlB3B2NMe1hGNDjmVyUppkZI1vkQQuJMeWCcLieq5LTtP0yKG~D-WD5xKVV9d1rdpgL67b7txLKoDICSlAHDoh4FM~3MfibDj7OeJXUplsrskmSPwRHZnnWZxuhtykkQxMkJKPJ~iZ~v0F2AtLtaMYob7MfS2KXUjx... <truncated 73 chars>",
+                "height": 327,
+                "width": 1023
+              }
+            ],
+            "problem": "<image>Question: Jeff rotates spinners P, Q and R and adds the resulting numbers. What is the probability that his sum is an odd number?",
+            "answer": "1/3"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/WaltonFuture/Multimodal-RL-Data/--/ffa589eff7e179598a05eba5167ffe87ffff406a/--/default/train/2/images/image-1d100e9.jpg?Expires=1779568391&Signature=NjLfmLcDzs9zCHtS2kHBIOs7IgZIwteTfla7PDiwRNPtaJFnpHNY-qZd7CNUZv34QNy7T81U903NQPY7GKQpxnOCSU5eqmS89sfLP6aVotYBFT86DJqbW4I4TTuMgUzZVRwYPRUHTkVEcFbwKZqzIaqNlXv6Izd2KPTMC93Z0jTeyndtRMwjHmhlncv1PloEh3FtAaSR6ERCXXHJ31cZ295NorWqODLMyGAwr9jEDLvHeFh7QmYr7sJKqkRjVdVw1jQ0Z0Vwf1yfzLRPGxoiNXUY5M70AiUucXceail~C2... <truncated 73 chars>",
+                "height": 207,
+                "width": 477
+              }
+            ],
+            "problem": "<image>Question: In the multiplication problem below, A, B, C, and D are different digits. What is A+B?",
+            "answer": "1"
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 5,
+        "filenames": [
+          "0000.parquet",
+          "0001.parquet",
+          "0002.parquet",
+          "0003.parquet",
+          "0004.parquet"
+        ],
+        "total_bytes": 850383233
+      }
+    }
+  ]
+}

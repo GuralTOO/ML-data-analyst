@@ -1,0 +1,7 @@
+agent-core @ git+https://github.com/NGXT-Inc/agent_core.git
+fastapi
+huggingface-hub
+nimble-python
+pydantic
+python-dotenv
+uvicorn[standard]

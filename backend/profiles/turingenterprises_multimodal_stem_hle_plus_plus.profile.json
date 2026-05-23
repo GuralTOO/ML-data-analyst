@@ -1,0 +1,339 @@
+{
+  "repo_id": "TuringEnterprises/Multimodal-STEM-HLE-plus-plus",
+  "profiled_at": "2026-05-23T19:33:22Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "TuringEnterprises/Multimodal-STEM-HLE-plus-plus",
+    "container_name": "dataset-turingenterprises-multimodal-stem-hle-plus-98a10bd410",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/turingenterprises-multimodal-stem-hle-plus-plus-98a10bd410812de9.json",
+    "state": "active",
+    "created_at": "2026-05-23T19:33:10Z",
+    "last_interaction_at": "2026-05-23T19:33:10Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T19:43:10Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 1,
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-turingenterprises-multimodal-stem-hle-plus-98a10bd410",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "TuringEnterprises/Multimodal-STEM-HLE-plus-plus",
+    "num_bytes_original_files": 6892125,
+    "num_bytes_parquet_files": 6892125,
+    "num_bytes_memory": 8140898,
+    "num_rows": 50,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 50,
+      "num_columns": 6,
+      "parquet_bytes": 6892125,
+      "memory_bytes": 8140898,
+      "actual_profiled_rows": 50,
+      "profile_mode": "full",
+      "profile_policy_reason": "under full-scan thresholds",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "Task ID",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "Domain",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "Subdomain",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "Prompt",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "GTFA",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "Image",
+          "type": "Tuple(\n    bytes Nullable(String),\n    path Nullable(String))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "Task ID",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "Domain",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "Subdomain",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "Prompt",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "GTFA",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "Image",
+          "type": {
+            "_type": "Image"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "Task ID",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 11,
+          "length_quantiles": [
+            11,
+            11,
+            11
+          ],
+          "top_values": [
+            "MM-HLE_5022",
+            "MM-HLE_7131",
+            "MM-HLE_6204",
+            "MM-HLE_7006",
+            "MM-HLE_5720"
+          ]
+        },
+        {
+          "name": "Domain",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 8.1,
+          "length_quantiles": [
+            7,
+            11.500000000000007,
+            16
+          ],
+          "top_values": [
+            "Physics",
+            "Math",
+            "Chemistry",
+            "Biology",
+            "Computer Science"
+          ]
+        },
+        {
+          "name": "Subdomain",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 21.1,
+          "length_quantiles": [
+            19,
+            35.1,
+            40.529999999999994
+          ],
+          "top_values": [
+            "Mechanical Engineering",
+            "Organic Chemistry",
+            "Inorganic Chemistry",
+            "Medicinal Chemistry",
+            "Molecular Biology"
+          ]
+        },
+        {
+          "name": "Prompt",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 648.72,
+          "length_quantiles": [
+            466.5,
+            1245.7,
+            2116.6599999999994
+          ],
+          "top_values": [
+            "The attached image is a multi-panel acid-fast staining figure.\n \n A parasitology team uses the Helmintex method (30 g stool per sample) to detect Schistosoma eggs by auramine O fluorescence microscopy. From published spike-recovery validation experiments: at a true burden of 0.05 epg (eggs per gram), 35% of eggs present in the 30 g sample were physically recovered onto the slide; at a true burden of 0.15 epg, 15% of eggs were physically recovered. The decline in per-egg recovery at higher burden... <truncated 603 chars>",
+            "The Figure provides binary dominance plots. Figure peak reads as \\(1.0\\) at \\(p=0.5\\) (visual scale). Var, Var/M\u00b2, Var/(K M) overlap completely. \\(K=2\\), M=constant.\n \n Variance formula: \\(\\mathrm{Var} = \\frac{1}{K} \\sum_{i=1}^{K} (p_i - 0.5)^2\\)\n  \n  Calculate the plotted Var value (figure scale) at p=\\(0.3\\). Scale raw calculation by figure peak=\\(1.0\\). Enter exact number (2 decimals).",
+            "\\( \\text{Epstein-Barr virus} \\) (\\( \\text{EBV} \\)) \\( \\text{glycoprotein} \\) \\( \\text{gp350} \\) binds \\( \\text{complement receptor 2} \\) (\\( \\text{CR2} \\)) on \\( \\text{B cells} \\) to initiate infection. Two \\( \\text{neutralizing antibodies} \\) (\\( \\text{nAbs} \\)) from \\( \\text{gp350-immunized} \\) macaques\u2014\\( \\text{Cy137C02} \\), more sensitive to \\( \\text{proline/alanine loop} \\) mutants) than \\( \\text{Cy651H02} \\).\n \n Figure panels \\( \\text{A} \\) and \\( \\text{B} \\) show crystal structures of \\( ... <truncated 272 chars>",
+            "The accompanying image shows the cluster \\(\\mathrm{[MnPb_{12}]^{3-}}\\), where twelve \\(\\mathrm{Pb}\\) atoms form a polyhedral framework surrounding a central \\(\\mathrm{Mn}\\) atom.\n \n Carefully examine the geometry of the \\(\\mathrm{Pb_{12}}\\) cage and the position of the central \\(\\mathrm{Mn}\\) atom in the accompanying image. The arrangement suggests the presence of a twofold rotational symmetry along a specific axis of the cluster, while higher rotational symmetries are not evident from the depic... <truncated 150 chars>",
+            "In this multi-panel figure, consider the UMAP projections in panels A and B together with the box plots in panels C and D. The cluster of cells that appears in the lower-left isolate of the UMAP in panel A displays the highest Villus Tip Score (approaching 1.0, shown in bright yellow). Now examine panel B: that same spatial region on the UMAP exhibits a specific Turnover Score color. Using the Turnover Score color scale in panel B, estimate the median Turnover Score for that high-Villus-Tip-Scor... <truncated 618 chars>"
+          ]
+        },
+        {
+          "name": "GTFA",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 15.14,
+          "length_quantiles": [
+            4,
+            27.1,
+            120.72999999999996
+          ],
+          "top_values": [
+            "20",
+            "12",
+            "0.84",
+            " B/A",
+            "21"
+          ]
+        },
+        {
+          "name": "Image",
+          "type": "Tuple(\n    bytes Nullable(String),\n    path Nullable(String))",
+          "semantic_role": "image",
+          "profile_mode": "full",
+          "nulls": 0
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "Task ID": "MM-HLE_4340",
+            "Domain": "Physics",
+            "Subdomain": "Electromagnetism",
+            "Prompt": "A static planar quadrupole consists of four discrete point charges situated in a vacuum. The charges are confined strictly to a diagonal plane defined by the condition $y = x$.The specific charge topography is as follows:Two positive charges, each of magnitude $+q$, are located on the $xy$-plane at Cartesian coordinates $(a/2, a/2, 0)$ and $(-a/2, -a/2, 0)$.Two negative charges, each of magnitude $-q$, are located on the $z$-axis at $(0, 0, a/2)$ and $(0, 0, -a/2)$.Derive the leading-order non-z... <truncated 272 chars>",
+            "GTFA": " $$\\Phi(r, \\vartheta, \\alpha) = \\frac{qa^2}{4r^3} (3\\sin^2\\vartheta \\sin 2\\alpha - 3\\cos 2\\vartheta - 1)$$",
+            "Image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Multimodal-STEM-HLE-plus-plus/--/56ad2ebe384a952687e46f0672e89035be81f85b/--/default/train/0/Image/image.png?Expires=1779568391&Signature=g29qc1Xwbq0TwYX8gbogBZEUM8Qa9i4iQ9f3NWHXJIVyjCAkXXE9FR74KcUJLtmBsnAGM7d~Sj9~51EMQL9JpY1sVY-6EGmjI0jrwSp9G4prOHsAnyq4Xhhsb7BtTQFu01j4~IAjPtlasvLPpP64MOIsYssiXdkA5OguF9pGtHhdBP7R29VhQ1fFH-rH78BCgVoycZu~fZT3P26T8f~AWqhWfPZVsha81v1EveFbrgUsHur3dX7p6xCGWmGpdRCMs6MmbbKfMlX6rDWu6tefzYbs3u-9rwGIfZ9... <truncated 80 chars>",
+              "height": 402,
+              "width": 528
+            }
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "Task ID": "MM-HLE_2146",
+            "Domain": "Physics",
+            "Subdomain": "Classical Mechanics",
+            "Prompt": "Analyze the rotational stability and dynamics of a gravity-gradient stabilized satellite, represented as a long slender rod of mass \\(m\\) and length \\(l\\) orbiting Earth, as shown in the figure.\n \n Calculate the steady-state (average) orientation angle of the satellite. Express the answer in degrees to three significant figures.\n \n Assume the satellite is in a circular orbit with constant angular velocity \\(\\omega_0\\), the deviations \\(\\psi\\) and \\(\\theta\\) are small enough to justify linearizat... <truncated 680 chars>",
+            "GTFA": "3.1",
+            "Image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Multimodal-STEM-HLE-plus-plus/--/56ad2ebe384a952687e46f0672e89035be81f85b/--/default/train/1/Image/image.jpg?Expires=1779568391&Signature=LXP44YC5kZKmWNo4~ksfUs6dALILUnUM2ugVaFIBAJuiL8Cfbma-2aBE827nYczWBirtCTOusqAB~N~gRQZgdW2~maAuhFeQ8Y-NhWNE8kHnOfHE6dzTMJ2pCLvB7rtySyB4ngfUL7yAxDLSCEXZKAF~rfD6Fg00vlI2h-Sg3AevBWrT6FwZMJcddZr-bSMDDZjE6F0esRLbT5Sm18XO0Bf2NX3wPph0kWN4mai7hWcjN8BQ3EaQ0bL3XSC-5liQLhKnmCjadEk5dBZWokWh3Ex-tnytjsXro~Q... <truncated 80 chars>",
+              "height": 533,
+              "width": 532
+            }
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "Task ID": "MM-HLE_6228",
+            "Domain": "Physics",
+            "Subdomain": "Thermodynamics & Statistical Mechanics",
+            "Prompt": "The figure depicts the Landau free energy density as a function of the order parameter for a material. Determine the latent heat per unit volume (in J/m\u00b3) released to nearest integer.",
+            "GTFA": "600",
+            "Image": {
+              "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Multimodal-STEM-HLE-plus-plus/--/56ad2ebe384a952687e46f0672e89035be81f85b/--/default/train/2/Image/image.png?Expires=1779568391&Signature=rr2JOF2Er9e01BIuoNvuFGZJmR~cVuRqkneHo50gxr4fPnCxIljzKyBbmP4VwMkAzzyWAhdxYXYJ-42nLPzhM31C2COpKqe-yw9noRPQbjVWhXBqaA4xvgIQq4LWwhnOiIyQPH~yalYZezl~kCK6MBz8D3wTAseeWgvivNdQzOFVhc4eBN-7U8W9M4cmwicbv-Q0Yenhh7iEDXN-wkhF1Y4DzfO4gce9OSs9RgoG-S08LI1IGErSUb1OXN4EluQEgG5m1ivKPgPq4L57vWv3N5zfBZL80P-QcAD... <truncated 80 chars>",
+              "height": 1598,
+              "width": 2375
+            }
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 6892125
+      }
+    }
+  ]
+}

@@ -1,0 +1,1400 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #fdfdfc;
+  --color-surface: #ffffff;
+  --color-card: #f9f9f8;
+  --color-border: #dad9d6;
+  --color-foreground: #21201c;
+  --color-foreground-muted: #63635e;
+  --color-foreground-subtle: #8d8d86;
+  --color-agent: #5b5bd6;
+  --color-success: #29a383;
+  --color-error: #e5484d;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* Local aliases mirroring Papyrus tokens so ported CSS stays readable */
+:root {
+  --sand-1: #fdfdfc;
+  --sand-2: #f9f9f8;
+  --sand-3: #f1f0ef;
+  --sand-4: #e9e8e6;
+  --sand-5: #e2e1de;
+  --sand-6: #dad9d6;
+  --sand-7: #cdccc7;
+  --sand-8: #bcbbb5;
+  --sand-9: #8d8d86;
+  --sand-10: #82827c;
+  --sand-11: #63635e;
+  --sand-12: #21201c;
+
+  --iris-6: #d0cdf3;
+  --iris-7: #b9b6e9;
+  --iris-8: #9b96e6;
+  --iris-9: #5b5bd6;
+  --iris-10: #5151cd;
+
+  --jade-2: #ebf9f3;
+  --jade-9: #29a383;
+  --jade-10: #259a7b;
+
+  --red-9: #e5484d;
+  --red-11: #ce2c31;
+
+  --overlay-faint: rgba(0, 0, 0, 0.03);
+  --overlay-soft: rgba(0, 0, 0, 0.06);
+  --overlay-medium: rgba(0, 0, 0, 0.12);
+
+  --transition-fast: 120ms ease;
+  --transition-slow: 220ms ease;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--color-foreground);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes agent-pulsate {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0% 0; }
+}
+
+/* ── Chat thread layout ── */
+
+.app-shell {
+  --sidebar-width: 260px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 5px var(--rail-width, 320px);
+  height: 100%;
+  background: var(--color-background);
+  /* Clip here so neither column's content can spill into the page scroll. */
+  overflow: hidden;
+  /* Anchors the absolute-positioned sessions sidebar + scrim below. */
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .app-shell .dataset-workspace,
+  .app-shell .resize-handle { display: none; }
+}
+
+/* ── Sessions sidebar (overlay) ──
+   Floats over the chat panel rather than taking a grid column. A scrim sits
+   underneath it to dismiss on outside-click. Sliding off-screen is controlled
+   by the [data-sidebar] attribute on .app-shell. */
+
+.sessions-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--sand-2);
+  border-right: 1px solid var(--color-border);
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  transform: translateX(0);
+  transition: transform var(--transition-slow);
+}
+.app-shell[data-sidebar='collapsed'] .sessions-sidebar {
+  transform: translateX(-100%);
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* Click-anywhere-to-dismiss scrim. Faint by default so it doesn't visually
+   dominate; full transparent when the sidebar is collapsed. */
+.sessions-sidebar-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 49;
+  background: rgba(0, 0, 0, 0.18);
+  opacity: 1;
+  transition: opacity var(--transition-slow);
+  cursor: pointer;
+}
+.app-shell[data-sidebar='collapsed'] .sessions-sidebar-scrim {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sessions-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sand-12);
+  flex-shrink: 0;
+}
+
+.sessions-sidebar-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sessions-sidebar-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--sand-10);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.sessions-sidebar-icon-btn:hover {
+  background: var(--sand-4);
+  color: var(--sand-12);
+}
+
+/* Subtle-iris-tinted primary action. Borderless in the resting state — the
+   color tint alone signals "primary" without competing with the sidebar's
+   muted typography. Picks up the iris from the brand sparkle so the button
+   feels tied to the agent identity. */
+.sessions-sidebar-new {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 10px 4px;
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: rgba(91, 91, 214, 0.08);
+  color: var(--iris-10);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.1px;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+.sessions-sidebar-new:hover {
+  background: rgba(91, 91, 214, 0.14);
+  border-color: rgba(91, 91, 214, 0.2);
+  color: var(--iris-10);
+  box-shadow: 0 1px 2px rgba(91, 91, 214, 0.08);
+}
+.sessions-sidebar-new:active {
+  background: rgba(91, 91, 214, 0.18);
+}
+.sessions-sidebar-new:focus-visible {
+  outline: none;
+  border-color: var(--color-agent);
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.18);
+}
+
+.sessions-sidebar-new-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(91, 91, 214, 0.18);
+  color: var(--color-agent);
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+}
+.sessions-sidebar-new:hover .sessions-sidebar-new-icon {
+  background: rgba(91, 91, 214, 0.25);
+}
+
+.sessions-sidebar-section-label {
+  padding: 18px 16px 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--sand-9);
+  flex-shrink: 0;
+}
+
+.sessions-sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sessions-sidebar-empty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  color: var(--sand-9);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.sessions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--sand-11);
+  position: relative;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  min-width: 0;
+  min-height: 32px;
+}
+.sessions-row:hover {
+  background: var(--sand-4);
+  color: var(--sand-12);
+}
+.sessions-row--active {
+  background: var(--color-surface);
+  color: var(--sand-12);
+  font-weight: 500;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+.sessions-row--active:hover {
+  background: var(--color-surface);
+}
+
+.sessions-row-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.sessions-row-rename-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 13px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-agent);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  outline: none;
+  color: var(--sand-12);
+  box-shadow: 0 0 0 3px rgba(91, 91, 214, 0.12);
+}
+
+/* Right-side slot — holds either the muted relative-time label OR the kebab.
+   They overlap and cross-fade so the row width never jumps when actions
+   appear. The wrap is also the menu's positioning anchor. */
+.sessions-row-meta {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 32px;
+  height: 18px;
+}
+
+.sessions-row-time {
+  font-size: 10.5px;
+  color: var(--sand-9);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+  transition: opacity var(--transition-fast);
+}
+.sessions-row:hover .sessions-row-time,
+.sessions-row--menu-open .sessions-row-time {
+  opacity: 0;
+}
+.sessions-row--active .sessions-row-time {
+  color: var(--sand-10);
+}
+
+.sessions-row-kebab {
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: var(--sand-10);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+.sessions-row:hover .sessions-row-kebab,
+.sessions-row--menu-open .sessions-row-kebab {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sessions-row-kebab:hover {
+  background: var(--sand-5);
+  color: var(--sand-12);
+}
+
+.sessions-row-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--sand-5);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.12),
+    0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+
+.sessions-row-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 12px;
+  border: none;
+  background: transparent;
+  color: var(--sand-11);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.sessions-row-menu-item:hover {
+  background: var(--sand-3);
+  color: var(--sand-12);
+}
+.sessions-row-menu-item--danger {
+  color: var(--red-11);
+}
+.sessions-row-menu-item--danger:hover {
+  background: rgba(229, 72, 77, 0.1);
+  color: var(--red-11);
+}
+
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* Contain the chat thread's scroll inside the panel. */
+  min-height: 0;
+  overflow: hidden;
+}
+
+.resize-handle {
+  background: var(--color-border);
+  cursor: col-resize;
+  transition: background var(--transition-fast);
+  user-select: none;
+  touch-action: none;
+}
+.resize-handle:hover,
+.resize-handle.active {
+  background: var(--color-agent);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 36px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sand-12);
+  flex-shrink: 0;
+  background: var(--color-surface);
+}
+
+.chat-header-subtitle {
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--sand-9);
+}
+
+/* Hamburger that opens the overlay sidebar. Only rendered while closed. */
+.chat-header-sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 4px;
+  border: none;
+  background: transparent;
+  color: var(--sand-10);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.chat-header-sidebar-toggle:hover {
+  background: var(--sand-4);
+  color: var(--sand-12);
+}
+
+.chat-thread {
+  flex: 1;
+  /* Without min-height: 0, a flex child won't shrink below its intrinsic
+     content height — so overflow-y: auto becomes a no-op and the overflow
+     leaks up to the page, where it then drags the right column along with it. */
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-behavior: smooth;
+}
+
+.chat-thread-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--sand-9);
+  font-size: 13px;
+  padding: 24px;
+  max-width: 460px;
+}
+
+.chat-thread-empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sand-11);
+  margin-bottom: 6px;
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  padding: 0 36px;
+}
+
+.chat-message.user {
+  align-items: flex-end;
+}
+
+.chat-message.user .chat-message-content {
+  max-width: 80%;
+  background: var(--sand-3);
+  border-radius: 14px;
+  padding: 8px 14px;
+}
+
+.chat-message.assistant .chat-message-content {
+  max-width: 100%;
+}
+
+.chat-message-content {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-foreground);
+}
+
+/* ── Chat input ── */
+
+.chat-input-area {
+  padding: 12px 36px 16px;
+  flex-shrink: 0;
+  background: var(--color-background);
+}
+
+.chat-input-container {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: 0 1px 6px var(--overlay-faint);
+  transition: border-color var(--transition-slow), box-shadow var(--transition-slow);
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.chat-input-container:focus-within {
+  border-color: var(--sand-8);
+  box-shadow: 0 2px 12px var(--overlay-soft);
+}
+
+.chat-input-textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 48px 6px 14px;
+  color: var(--color-foreground);
+  max-height: 240px;
+  min-height: 24px;
+}
+
+.chat-input-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 0 8px 8px;
+}
+
+.chat-input-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-agent);
+  color: white;
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+}
+.chat-input-submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.chat-input-submit.abort {
+  background: var(--red-9);
+}
+
+/* ── Markdown ── */
+
+.chat-markdown {
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.chat-markdown .chat-md-h1 { font-size: 0.9375rem; font-weight: 600; margin: 12px 0 6px; color: var(--color-foreground); }
+.chat-markdown .chat-md-h2 { font-size: 0.875rem;  font-weight: 600; margin: 10px 0 4px; color: var(--color-foreground); }
+.chat-markdown .chat-md-h3 { font-size: 0.8125rem; font-weight: 600; margin: 8px 0 4px;  color: var(--color-foreground); }
+.chat-markdown .chat-md-h4 { font-size: 0.8125rem; font-weight: 600; margin: 6px 0 3px;  color: var(--color-foreground-muted); }
+.chat-markdown .chat-md-p  { margin: 4px 0; }
+.chat-markdown .chat-md-ul, .chat-markdown .chat-md-ol { margin: 4px 0; padding-left: 20px; }
+.chat-markdown .chat-md-ul li, .chat-markdown .chat-md-ol li { margin: 2px 0; }
+
+.chat-markdown .chat-md-code {
+  background: var(--sand-3);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.chat-md-codeblock {
+  margin: 8px 0;
+  border-radius: var(--radius-md);
+  background: var(--sand-2);
+  border: 1px solid var(--overlay-soft);
+  overflow: hidden;
+}
+.chat-md-codeblock-lang {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--sand-9);
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--overlay-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.chat-md-codeblock pre { margin: 0; padding: 10px 12px; overflow-x: auto; }
+.chat-md-codeblock code {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-foreground);
+}
+
+.chat-markdown .chat-md-table {
+  width: 100%;
+  margin: 6px 0;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.chat-markdown .chat-md-table th, .chat-markdown .chat-md-table td {
+  border: 1px solid var(--color-border);
+  padding: 4px 8px;
+  text-align: left;
+}
+.chat-markdown .chat-md-table th {
+  font-weight: 600;
+  background: var(--sand-3);
+}
+
+.chat-md-link {
+  color: var(--color-agent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(91, 91, 214, 0.3);
+  transition: text-decoration-color var(--transition-fast);
+}
+.chat-md-link:hover { text-decoration-color: var(--color-agent); }
+
+.dataset-mention {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(91, 91, 214, 0.08);
+  color: var(--iris-10);
+  font-family: 'SF Mono', monospace;
+  font-size: 11.5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.dataset-mention:hover {
+  background: rgba(91, 91, 214, 0.14);
+  border-color: var(--iris-7);
+}
+
+/* ── Tool tree (live activity for current turn) ── */
+
+.tool-tree {
+  margin: 6px 36px 12px;
+  font-family: var(--font-sans);
+}
+.tool-tree-progress {
+  height: 2px;
+  margin-bottom: 6px;
+  border-radius: 1px;
+  overflow: hidden;
+  background: var(--sand-3);
+  position: relative;
+}
+.tool-tree-progress::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 20%, var(--iris-7) 40%, var(--iris-9) 50%, var(--iris-7) 60%, transparent 80%);
+  background-size: 200% 100%;
+  animation: agent-pulsate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.tool-tree-body { padding-left: 0; }
+.tool-tree-node { margin-bottom: 1px; }
+
+.tool-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 4px;
+  margin: 0 -4px;
+  min-width: 0;
+  line-height: 1.4;
+  border-radius: var(--radius-sm);
+}
+.tool-tree-row.clickable { cursor: pointer; }
+.tool-tree-row.clickable:hover { background: rgba(91, 91, 214, 0.04); }
+.tool-tree-row.detail-open { background: rgba(91, 91, 214, 0.06); }
+
+.tool-tree-icon { flex-shrink: 0; color: var(--iris-8); opacity: 0.7; }
+.tool-tree-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+  font-size: 11.5px;
+  color: var(--sand-10);
+}
+.tool-tree-spinner { flex-shrink: 0; color: var(--iris-9); animation: spin 1s linear infinite; }
+.tool-tree-check-icon { flex-shrink: 0; color: var(--jade-9); }
+.tool-tree-error-icon { flex-shrink: 0; color: var(--red-9); }
+.tool-tree-running-text { flex-shrink: 0; font-size: 10.5px; color: var(--sand-8); font-style: italic; }
+
+/* Tool call detail (inline below row) */
+.tool-detail {
+  margin: 2px 0 6px 20px;
+  font-size: 11px;
+  color: var(--sand-10);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tool-detail-section { margin-top: 4px; }
+.tool-detail-section-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  padding: 2px 0;
+  font-size: 10.5px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--sand-9);
+  cursor: pointer;
+  width: 100%;
+}
+.tool-detail-section-header:hover { color: var(--sand-11); }
+.tool-detail-char-count { font-weight: 400; color: var(--sand-7); font-size: 9.5px; margin-left: auto; }
+.tool-detail-section-body { margin-top: 2px; }
+
+.tool-detail-code {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--sand-11);
+  background: var(--sand-1);
+  border: 1px solid var(--sand-4);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* ── Dataset agent cards (sub-agents) ── */
+
+.agent-card-row {
+  display: flex;
+  gap: 8px;
+  margin: 6px 36px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+@media (max-width: 767px) {
+  .agent-card-row { flex-direction: column; overflow-x: visible; }
+  .agent-card-row .agent-card { flex: 0 0 auto; width: 100%; }
+}
+
+.agent-card {
+  flex: 0 0 220px;
+  min-height: 90px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--sand-5);
+  background: var(--sand-2);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color var(--transition-slow), box-shadow var(--transition-slow), opacity var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-sans);
+  position: relative;
+  overflow: hidden;
+}
+.agent-card:hover {
+  border-color: var(--iris-6);
+  box-shadow: 0 0 0 1px var(--iris-6);
+}
+.agent-card--live {
+  border-color: var(--iris-7);
+  box-shadow: 0 0 8px rgba(91, 91, 214, 0.15);
+}
+.agent-card--live::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 20%, var(--iris-7) 40%, var(--iris-9) 50%, var(--iris-7) 60%, transparent 80%);
+  background-size: 200% 100%;
+  animation: agent-pulsate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.agent-card--done { opacity: 0.75; border-color: var(--sand-4); }
+.agent-card--done:hover { opacity: 1; }
+.agent-card--error { border-color: rgba(229, 72, 77, 0.5); }
+
+.agent-card-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--sand-11);
+  min-width: 0;
+}
+.agent-card-icon { color: var(--iris-9); flex-shrink: 0; }
+.agent-card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'SF Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sand-11);
+  flex: 1;
+  min-width: 0;
+}
+.agent-card-status { margin-left: auto; flex-shrink: 0; }
+
+.agent-card-task {
+  font-size: 10.5px;
+  color: var(--sand-9);
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.agent-card-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+}
+.agent-card-feed-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--sand-8);
+  line-height: 1.3;
+}
+.agent-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--sand-9);
+  margin-top: 4px;
+}
+
+/* ── Dataset agent modal ── */
+
+.agent-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+.agent-modal {
+  width: 760px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 80px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--sand-5);
+  box-shadow: 0 8px 40px var(--overlay-medium);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.agent-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--sand-4);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sand-12);
+  flex-shrink: 0;
+}
+.agent-modal-header-title {
+  font-family: 'SF Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--sand-12);
+}
+.agent-modal-live-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--iris-9);
+  background: rgba(91, 91, 214, 0.08);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+.agent-modal-duration {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--sand-9);
+}
+.agent-modal-close {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--sand-9);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+}
+.agent-modal-close:hover { color: var(--sand-11); background: var(--sand-3); }
+
+.agent-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.agent-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.agent-modal-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sand-9);
+}
+.agent-modal-pre {
+  font-family: 'SF Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--sand-11);
+  background: var(--sand-2);
+  border: 1px solid var(--sand-4);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-modal-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.agent-modal-tool { display: flex; flex-direction: column; }
+.agent-modal-tool-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+}
+.agent-modal-tool-row.clickable { cursor: pointer; }
+.agent-modal-tool-row.clickable:hover { background: rgba(91, 91, 214, 0.04); }
+.agent-modal-tool-name { color: var(--sand-11); }
+.agent-modal-tool-meta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.agent-modal-tool-duration { font-size: 10px; color: var(--sand-9); }
+.agent-modal-tool-tokens {
+  font-size: 9.5px;
+  color: var(--sand-9);
+  font-family: 'SF Mono', monospace;
+  white-space: nowrap;
+}
+.agent-modal-tool-chevron { color: var(--sand-9); flex-shrink: 0; }
+
+.agent-modal-tool-detail {
+  margin-left: 20px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.agent-modal-tool-section { display: flex; flex-direction: column; gap: 2px; }
+.agent-modal-tool-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sand-9);
+}
+
+/* JSON syntax highlighting */
+.agent-modal-json {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  background: var(--sand-2);
+  border: 1px solid var(--sand-4);
+  border-radius: 6px;
+  padding: 8px 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  color: var(--sand-11);
+}
+.json-key    { color: #5b5bd6; }
+.json-string { color: #2a7e5a; }
+.json-number { color: #d6762b; }
+.json-bool   { color: #d6762b; }
+.json-null   { color: var(--sand-9); font-style: italic; }
+
+.agent-modal-report {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--sand-11);
+  background: var(--sand-2);
+  border: 1px solid var(--sand-4);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.agent-modal-report h2, .agent-modal-report h3, .agent-modal-report h4 { margin: 8px 0 4px; }
+.agent-modal-report p { margin: 4px 0; }
+.agent-modal-report ul, .agent-modal-report ol { margin: 4px 0; padding-left: 18px; }
+
+/* Modal chat composer (for follow-up Q&A with the dataset agent) */
+.agent-modal-composer {
+  border-top: 1px solid var(--sand-4);
+  padding: 10px 12px;
+  background: var(--sand-2);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.agent-modal-composer textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid var(--sand-5);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 12.5px;
+  line-height: 1.5;
+  max-height: 120px;
+  background: var(--color-surface);
+  color: var(--sand-12);
+  outline: none;
+}
+.agent-modal-composer textarea:focus { border-color: var(--sand-8); }
+.agent-modal-composer button {
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-agent);
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.agent-modal-composer button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Dataset workspace (right column — tabbed sub-agent surface) ── */
+
+.dataset-workspace {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--color-card);
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── Top tab strip — browser-tab styled ──
+   Tabs anchor to the bottom of the strip so the active tab can "lift" past
+   the strip's bottom border via a negative margin, giving the Chrome/Arc
+   feel of an active tab merging into the panel below. */
+.dataset-workspace-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  padding: 0 8px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: var(--color-card);
+  /* Scrolling still works via wheel/trackpad — the scrollbar itself is
+     hidden so the tab strip looks like a clean browser-tab row. */
+  scrollbar-width: none;            /* Firefox */
+  -ms-overflow-style: none;         /* legacy Edge / IE */
+  /* Allow the active tab's negative bottom margin to overlap the body's
+     top edge — without this the body would scroll-clip the overlap. */
+  position: relative;
+  z-index: 1;
+}
+.dataset-workspace-tabs::-webkit-scrollbar {
+  display: none;                    /* WebKit (Safari, Chrome) */
+}
+
+.dataset-workspace-tabs.is-empty {
+  padding: 0 16px;
+  align-items: center;
+}
+.dataset-workspace-tabs-empty-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sand-11);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Inactive tab — Chrome-style: top-rounded, transparent until hovered,
+   thin separator on the left that disappears next to the active tab. */
+.dataset-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px 7px 12px;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  min-width: 130px;
+  max-width: 200px;
+  min-height: 30px;
+  color: var(--sand-10);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+/* Subtle vertical divider between adjacent inactive tabs — hides
+   automatically when either neighbor is active (via the :has selectors
+   below). Mirrors Chrome's "separator only between two inactive tabs". */
+.dataset-tab + .dataset-tab::before {
+  content: '';
+  position: absolute;
+  left: -0.5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--sand-5);
+  transition: opacity var(--transition-fast);
+}
+/* Hide the divider next to the active tab (both sides) */
+.dataset-tab--active::before,
+.dataset-tab--active + .dataset-tab::before,
+.dataset-tab:hover::before,
+.dataset-tab:hover + .dataset-tab::before {
+  opacity: 0;
+}
+
+.dataset-tab:hover {
+  background: rgba(0, 0, 0, 0.035);
+  color: var(--sand-12);
+}
+
+/* Active tab — lifted out of the strip:
+   - white background matching the body's "card" surface
+   - border on top/left/right
+   - margin-bottom:-1px + bottom border in body bg color erases the strip
+     border underneath so the tab visually merges into the body */
+.dataset-tab--active {
+  background: var(--color-surface);
+  color: var(--sand-12);
+  border-color: var(--color-border);
+  border-bottom: 1px solid var(--color-surface);
+  margin-bottom: -1px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.02);
+  z-index: 2;
+}
+.dataset-tab--active:hover {
+  background: var(--color-surface);
+}
+
+/* "Favicon" — a small fixed-size circle/check/spinner on the left. */
+.dataset-tab-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--sand-9);
+}
+.dataset-tab--active .dataset-tab-status { color: var(--iris-9); }
+
+.dataset-tab-title {
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 11.5px;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+.dataset-tab--active .dataset-tab-title { font-weight: 500; }
+
+/* Close button: invisible at rest, fades in on tab hover or when active.
+   Same chrome-style "x" affordance browser tabs use. */
+.dataset-tab-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: var(--sand-9);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+.dataset-tab:hover .dataset-tab-close,
+.dataset-tab--active .dataset-tab-close {
+  opacity: 1;
+}
+.dataset-tab-close:hover {
+  background: var(--sand-4);
+  color: var(--sand-12);
+}
+.dataset-tab--active .dataset-tab-close:hover {
+  background: var(--sand-3);
+}
+
+/* Body — its own scroll container, independent of the chat thread's scroll. */
+.dataset-workspace-body {
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.dataset-workspace-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--sand-9);
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: 280px;
+  padding: 24px 8px;
+}
+.dataset-workspace-empty-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sand-11);
+  margin-bottom: 6px;
+}
+
+/* Active-agent body content lives inside .dataset-workspace-body and re-uses
+   the agent-modal-* utility classes (section, pre, tools, report, json). */
+.agent-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.agent-body-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--sand-4);
+  margin-bottom: 4px;
+}
+.agent-body-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--sand-9);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.agent-body-link:hover { background: var(--sand-3); color: var(--sand-12); }
+
+/* Composer at the bottom of the workspace — uses the shared <ChatInput> so
+   the composer card, focus state, and submit button match the main chat. */
+.dataset-workspace-composer {
+  border-top: 1px solid var(--color-border);
+  background: var(--sand-2);
+  flex-shrink: 0;
+}
+.dataset-workspace-composer .chat-input-area {
+  padding: 8px 12px 10px;
+  background: transparent;
+}
+.dataset-workspace-composer .chat-input-container {
+  max-width: none;
+  border-radius: 12px;
+}
+.dataset-workspace-composer .chat-input-textarea {
+  font-size: 13px;
+  padding: 9px 40px 4px 12px;
+  max-height: 160px;
+}
+.dataset-workspace-composer .chat-input-actions {
+  padding: 0 6px 6px;
+}
+.dataset-workspace-composer .chat-input-submit {
+  width: 26px;
+  height: 26px;
+}
+
+/* Per-agent message thread — shares the main chat's ChatMessage styling but
+   uses tighter horizontal padding so it reads well inside a 320–520px rail. */
+.agent-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dataset-workspace-body .chat-message { padding: 0 16px; }
+.dataset-workspace-body .chat-message.user .chat-message-content { max-width: 90%; }
+.dataset-workspace-body .tool-tree { margin: 4px 16px 8px; }
+.agent-thread-empty {
+  font-size: 12px;
+  color: var(--sand-9);
+  padding: 8px 16px;
+  font-style: italic;
+}

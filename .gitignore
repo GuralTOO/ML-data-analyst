@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+backend/clickhouse/data/
+backend/clickhouse/logs/
+backend/clickhouse/cache/
+backend/bin/
+backend/dataset_sessions/
+backend/agent_state/
+.claude/
+.research_plugin/

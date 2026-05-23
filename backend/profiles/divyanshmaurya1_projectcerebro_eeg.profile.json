@@ -1,0 +1,763 @@
+{
+  "repo_id": "divyanshmaurya1/projectcerebro-eeg",
+  "profiled_at": "2026-05-23T17:57:52Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "divyanshmaurya1/projectcerebro-eeg",
+    "container_name": "dataset-divyanshmaurya1-projectcerebro-eeg-261da5962f",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/divyanshmaurya1-projectcerebro-eeg-261da5962f59a5de.json",
+    "state": "active",
+    "created_at": "2026-05-23T17:57:43Z",
+    "last_interaction_at": "2026-05-23T17:57:43Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T18:07:43Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 1,
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-divyanshmaurya1-projectcerebro-eeg-261da5962f",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest"
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "divyanshmaurya1/projectcerebro-eeg",
+    "num_bytes_original_files": 165386066,
+    "num_bytes_parquet_files": 165386066,
+    "num_bytes_memory": 166077627,
+    "num_rows": 15934,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 15934,
+      "num_columns": 19,
+      "parquet_bytes": 165386066,
+      "memory_bytes": 166077627,
+      "actual_profiled_rows": 15934,
+      "profile_mode": "sample",
+      "profile_policy_reason": "parquet bytes 165386066 exceed threshold 100000000",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "epoch_id",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "dataset",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "subject_id",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "session_id",
+          "type": "Nullable(Int32)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "run_id",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "source_file",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "label_code",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "label_name",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "n_channels",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "n_samples",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "channel_names",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "sampling_rate_hz",
+          "type": "Nullable(Float64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "epoch_start_sec",
+          "type": "Nullable(Float64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "epoch_end_sec",
+          "type": "Nullable(Float64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "filter_version",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "preprocessing_version",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "ingested_at",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "is_rest_synthetic",
+          "type": "Nullable(Bool)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "features_bytes",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "epoch_id",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "dataset",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "subject_id",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "session_id",
+          "type": {
+            "dtype": "null",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "run_id",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "source_file",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 6,
+          "name": "label_code",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 7,
+          "name": "label_name",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 8,
+          "name": "n_channels",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 9,
+          "name": "n_samples",
+          "type": {
+            "dtype": "int64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 10,
+          "name": "channel_names",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 11,
+          "name": "sampling_rate_hz",
+          "type": {
+            "dtype": "float64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 12,
+          "name": "epoch_start_sec",
+          "type": {
+            "dtype": "float64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 13,
+          "name": "epoch_end_sec",
+          "type": {
+            "dtype": "float64",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 14,
+          "name": "filter_version",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 15,
+          "name": "preprocessing_version",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 16,
+          "name": "ingested_at",
+          "type": {
+            "dtype": "large_string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 17,
+          "name": "is_rest_synthetic",
+          "type": {
+            "dtype": "bool",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 18,
+          "name": "features_bytes",
+          "type": {
+            "dtype": "binary",
+            "_type": "Value"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "epoch_id",
+          "type": "Nullable(String)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "physionet|S001|S001R04|1|3200|7199",
+            "physionet|S001|S001R04|0|11500|15499",
+            "physionet|S001|S001R04|0|19800|23799"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 34,
+          "max_length_sample": 36,
+          "avg_length_sample": 35.333333333333336
+        },
+        {
+          "name": "dataset",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "physionet",
+            "physionet",
+            "physionet"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 9,
+          "max_length_sample": 9,
+          "avg_length_sample": 9.0
+        },
+        {
+          "name": "subject_id",
+          "type": "Nullable(String)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "S001",
+            "S001",
+            "S001"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 4,
+          "max_length_sample": 4,
+          "avg_length_sample": 4.0
+        },
+        {
+          "name": "session_id",
+          "type": "Nullable(Int32)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 3,
+          "sample_values": []
+        },
+        {
+          "name": "run_id",
+          "type": "Nullable(String)",
+          "semantic_role": "identifier",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "S001R04",
+            "S001R04",
+            "S001R04"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 7,
+          "max_length_sample": 7,
+          "avg_length_sample": 7.0
+        },
+        {
+          "name": "source_file",
+          "type": "Nullable(String)",
+          "semantic_role": "path_or_url",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif",
+            "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif",
+            "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 97,
+          "max_length_sample": 97,
+          "avg_length_sample": 97.0
+        },
+        {
+          "name": "label_code",
+          "type": "Nullable(Int64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "label_name",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "right",
+            "left",
+            "left"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 4,
+          "max_length_sample": 5,
+          "avg_length_sample": 4.333333333333333
+        },
+        {
+          "name": "n_channels",
+          "type": "Nullable(Int64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            5,
+            5,
+            5
+          ]
+        },
+        {
+          "name": "n_samples",
+          "type": "Nullable(Int64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            512,
+            512,
+            512
+          ]
+        },
+        {
+          "name": "channel_names",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "FZ,C3,CZ,C4,PZ",
+            "FZ,C3,CZ,C4,PZ",
+            "FZ,C3,CZ,C4,PZ"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 14,
+          "max_length_sample": 14,
+          "avg_length_sample": 14.0
+        },
+        {
+          "name": "sampling_rate_hz",
+          "type": "Nullable(Float64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            128.0,
+            128.0,
+            128.0
+          ]
+        },
+        {
+          "name": "epoch_start_sec",
+          "type": "Nullable(Float64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            3.2,
+            11.5,
+            19.8
+          ]
+        },
+        {
+          "name": "epoch_end_sec",
+          "type": "Nullable(Float64)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            7.199,
+            15.499,
+            23.799
+          ]
+        },
+        {
+          "name": "filter_version",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "bp_8_30_v1",
+            "bp_8_30_v1",
+            "bp_8_30_v1"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 10,
+          "max_length_sample": 10,
+          "avg_length_sample": 10.0
+        },
+        {
+          "name": "preprocessing_version",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "v1.1.0",
+            "v1.1.0",
+            "v1.1.0"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 6,
+          "max_length_sample": 6,
+          "avg_length_sample": 6.0
+        },
+        {
+          "name": "ingested_at",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "2026-05-10T00:27:59.526876+00:00",
+            "2026-05-10T00:27:59.526876+00:00",
+            "2026-05-10T00:27:59.526876+00:00"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 32,
+          "max_length_sample": 32,
+          "avg_length_sample": 32.0
+        },
+        {
+          "name": "is_rest_synthetic",
+          "type": "Nullable(Bool)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "features_bytes",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "sample",
+          "sample_size": 3,
+          "nulls_sample": 0,
+          "sample_values": [
+            "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAqFHEg3uqq4NqwfmjbEzeC2ljfet9DS/7cT8Ru3occ0N1BYuTZ5W2W3GC2gt9d5kbaXZJA3R98FOAasCDgCo5g3ryIMNCIBDLdUZh23QV1mtyrplbd5D063tEyQtlDxB7fzG3+3A7vktmXkVjf5SL43NBuwN6g0tzedc8k3Qz5CN5izWLfBMNu32mSPt2j/Pbb0RLa1fB4Ut66qSrfKg0m3MuV2t9x1Pbc2bkw3oZA5OMIGajjnAiE4iSE7N/cPYbfE1yK4wYZ1uOFiWbjlg4+3kLOoN3/qHjgI7Rg4HFLANwnCUTaSkzy3WqMAt3Ee8DYEujw3tj6X... <truncated 27 chars>",
+            "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAotYLs3CR+RNyB97rWToE23MM3Nti/J5jR171a3JNMVuOZXFLh+Qhy2VWL3N0oW8TfQIgw3dwBqM1Qq8TYmJS83CdxdNvuAY7bykCK2RgqANipDFTdtv4c2LC5Yt9Y937cfi6a3Rm6ttEb1BzeAniC0jPwKt3MFi7Yy1yI31oHXN2dwBjh1d4U3nxZ3t+cr+bd7hoS3oPt0Niu34jaLXYc2GZUtN++SajeeY7g0BweUt/b4orf8qR63oDrQtu1/NLd37+22dNUrN0/a1jeZN7s3kT29NmAiWra5YY022qxZN+avDTdgohK21zGZtgCJ7rUeiv22m0e7... <truncated 27 chars>",
+            "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAqKjkK4heFeuJ0KEbjEY9M2N9RPOJFwmDg6YoQ4XtnWN235h7cDHgy4Roqzt5OMorZY0sy2SsuOt4NRjbfcfpS2HgnwNR/HqLbJyC+3YYnVtZxkXjc6cqk3FHCkNxW2oDera3c3wkmpMrCth7fzN6O3zZdYt1tG8balCAi2IAuiNizFgTYIbKS2JO31tduSmjduPt43NwmCNi70wreR08e399wRt44DVrY5c6u2FiP3NYHhYzfy5Yo3/TtPN0TkSTfm7nI3RDIXN39hD7chXuK3vtb4t8LESbdQvxE3d9dIN7ZqwrU0G0C3tYzVtkDn1jbudmI34W8t... <truncated 27 chars>"
+          ],
+          "empty_sample": 0,
+          "min_length_sample": 527,
+          "max_length_sample": 527,
+          "avg_length_sample": 527.0
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "epoch_id": "physionet|S001|S001R04|1|3200|7199",
+            "dataset": "physionet",
+            "subject_id": "S001",
+            "session_id": null,
+            "run_id": "S001R04",
+            "source_file": "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif",
+            "label_code": 1,
+            "label_name": "right",
+            "n_channels": 5,
+            "n_samples": 512,
+            "channel_names": "FZ,C3,CZ,C4,PZ",
+            "sampling_rate_hz": 128.0,
+            "epoch_start_sec": 3.2,
+            "epoch_end_sec": 7.199,
+            "filter_version": "bp_8_30_v1",
+            "preprocessing_version": "v1.1.0",
+            "ingested_at": "2026-05-10T00:27:59.526876+00:00",
+            "is_rest_synthetic": false,
+            "features_bytes": "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAqFHEg3uqq4NqwfmjbEzeC2ljfet9DS/7cT8Ru3occ0N1BYuTZ5W2W3GC2gt9d5kbaXZJA3R98FOAasCDgCo5g3ryIMNCIBDLdUZh23QV1mtyrplbd5D063tEyQtlDxB7fzG3+3A7vktmXkVjf5SL43NBuwN6g0tzedc8k3Qz5CN5izWLfBMNu32mSPt2j/Pbb0RLa1fB4Ut66qSrfKg0m3MuV2t9x1Pbc2bkw3oZA5OMIGajjnAiE4iSE7N/cPYbfE1yK4wYZ1uOFiWbjlg4+3kLOoN3/qHjgI7Rg4HFLANwnCUTaSkzy3WqMAt3Ee8DYEujw3tj6X... <truncated 13324 chars>"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "epoch_id": "physionet|S001|S001R04|0|11500|15499",
+            "dataset": "physionet",
+            "subject_id": "S001",
+            "session_id": null,
+            "run_id": "S001R04",
+            "source_file": "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif",
+            "label_code": 0,
+            "label_name": "left",
+            "n_channels": 5,
+            "n_samples": 512,
+            "channel_names": "FZ,C3,CZ,C4,PZ",
+            "sampling_rate_hz": 128.0,
+            "epoch_start_sec": 11.5,
+            "epoch_end_sec": 15.499,
+            "filter_version": "bp_8_30_v1",
+            "preprocessing_version": "v1.1.0",
+            "ingested_at": "2026-05-10T00:27:59.526876+00:00",
+            "is_rest_synthetic": false,
+            "features_bytes": "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAotYLs3CR+RNyB97rWToE23MM3Nti/J5jR171a3JNMVuOZXFLh+Qhy2VWL3N0oW8TfQIgw3dwBqM1Qq8TYmJS83CdxdNvuAY7bykCK2RgqANipDFTdtv4c2LC5Yt9Y937cfi6a3Rm6ttEb1BzeAniC0jPwKt3MFi7Yy1yI31oHXN2dwBjh1d4U3nxZ3t+cr+bd7hoS3oPt0Niu34jaLXYc2GZUtN++SajeeY7g0BweUt/b4orf8qR63oDrQtu1/NLd37+22dNUrN0/a1jeZN7s3kT29NmAiWra5YY022qxZN+avDTdgohK21zGZtgCJ7rUeiv22m0e7... <truncated 13324 chars>"
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "epoch_id": "physionet|S001|S001R04|0|19800|23799",
+            "dataset": "physionet",
+            "subject_id": "S001",
+            "session_id": null,
+            "run_id": "S001R04",
+            "source_file": "/teamspace/studios/this_studio/projectcerebro/data_cleaned/physionet/S001/S001R04_cleaned_raw.fif",
+            "label_code": 0,
+            "label_name": "left",
+            "n_channels": 5,
+            "n_samples": 512,
+            "channel_names": "FZ,C3,CZ,C4,PZ",
+            "sampling_rate_hz": 128.0,
+            "epoch_start_sec": 19.8,
+            "epoch_end_sec": 23.799,
+            "filter_version": "bp_8_30_v1",
+            "preprocessing_version": "v1.1.0",
+            "ingested_at": "2026-05-10T00:27:59.526876+00:00",
+            "is_rest_synthetic": false,
+            "features_bytes": "k05VTVBZAQB2AHsnZGVzY3InOiAnPGY0JywgJ2ZvcnRyYW5fb3JkZXInOiBGYWxzZSwgJ3NoYXBlJzogKDI1NjAsKSwgfSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAqKjkK4heFeuJ0KEbjEY9M2N9RPOJFwmDg6YoQ4XtnWN235h7cDHgy4Roqzt5OMorZY0sy2SsuOt4NRjbfcfpS2HgnwNR/HqLbJyC+3YYnVtZxkXjc6cqk3FHCkNxW2oDera3c3wkmpMrCth7fzN6O3zZdYt1tG8balCAi2IAuiNizFgTYIbKS2JO31tduSmjduPt43NwmCNi70wreR08e399wRt44DVrY5c6u2FiP3NYHhYzfy5Yo3/TtPN0TkSTfm7nI3RDIXN39hD7chXuK3vtb4t8LESbdQvxE3d9dIN7ZqwrU0G0C3tYzVtkDn1jbudmI34W8t... <truncated 13324 chars>"
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 165386066
+      }
+    }
+  ]
+}

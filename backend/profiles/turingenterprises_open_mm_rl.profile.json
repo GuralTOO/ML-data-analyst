@@ -1,0 +1,430 @@
+{
+  "repo_id": "TuringEnterprises/Open-MM-RL",
+  "profiled_at": "2026-05-23T20:05:45Z",
+  "requested_mode": "auto",
+  "clickhouse_mode": "local",
+  "clickhouse_runtime": {
+    "mode": "local",
+    "worker_enabled": true,
+    "worker_error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+  },
+  "dataset_session": {
+    "repo_id": "TuringEnterprises/Open-MM-RL",
+    "container_name": "dataset-turingenterprises-open-mm-rl-229a74c49b",
+    "session_file": "/Users/guraltoo/Documents/dev/proj/experiments/hackathon_05_23/backend/dataset_sessions/turingenterprises-open-mm-rl-229a74c49baea42a.json",
+    "worker": {
+      "ok": false,
+      "started": false,
+      "docker_available": true,
+      "container_name": "dataset-turingenterprises-open-mm-rl-229a74c49b",
+      "image": "clickhouse/clickhouse-server:latest",
+      "error": "Worker image 'clickhouse/clickhouse-server:latest' is not available locally. Call the start tool with pull_image=True to pull it."
+    },
+    "worker_image": "clickhouse/clickhouse-server:latest",
+    "state": "active",
+    "created_at": "2026-05-23T19:25:33Z",
+    "last_interaction_at": "2026-05-23T20:05:36Z",
+    "last_interaction": "profile:auto",
+    "expires_at": "2026-05-23T20:15:36Z",
+    "idle_ttl_seconds": 600,
+    "interactions": 2
+  },
+  "thresholds": {
+    "max_full_scan_bytes": 100000000,
+    "max_full_scan_rows": 100000
+  },
+  "dataset_size": {
+    "dataset": "TuringEnterprises/Open-MM-RL",
+    "num_bytes_original_files": 15508203,
+    "num_bytes_parquet_files": 15508203,
+    "num_bytes_memory": 15515771,
+    "num_rows": 40,
+    "estimated_num_rows": null
+  },
+  "parquet_status": {
+    "pending": [],
+    "failed": [],
+    "partial": false
+  },
+  "split_profiles": [
+    {
+      "config": "default",
+      "split": "train",
+      "num_rows": 40,
+      "num_columns": 8,
+      "parquet_bytes": 15508203,
+      "memory_bytes": 15515771,
+      "actual_profiled_rows": 40,
+      "profile_mode": "full",
+      "profile_policy_reason": "under full-scan thresholds",
+      "profile_error": null,
+      "schema": [
+        {
+          "name": "conversation_id",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "domain",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "subDomain",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "author_id",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "format",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "images",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "conversation_id",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "domain",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "subDomain",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "author_id",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "question",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "answer",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 6,
+          "name": "format",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 7,
+          "name": "images",
+          "type": {
+            "feature": {
+              "_type": "Image"
+            },
+            "_type": "List"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "conversation_id",
+          "type": "Nullable(String)",
+          "semantic_role": "identifier",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 6,
+          "length_quantiles": [
+            6,
+            6,
+            6
+          ],
+          "top_values": [
+            "306127",
+            "306110",
+            "306113",
+            "306115",
+            "306116"
+          ]
+        },
+        {
+          "name": "domain",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 6.825,
+          "length_quantiles": [
+            7,
+            9,
+            9
+          ],
+          "top_values": [
+            "Biology",
+            "Chemistry",
+            "Physics",
+            "Math"
+          ]
+        },
+        {
+          "name": "subDomain",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 17.7,
+          "length_quantiles": [
+            17,
+            24.400000000000006,
+            30
+          ],
+          "top_values": [
+            "Inorganic Chemistry",
+            "Molecular Biology",
+            "Organic Chemistry",
+            "Physics (general)",
+            "Neurobiology"
+          ]
+        },
+        {
+          "name": "author_id",
+          "type": "Nullable(String)",
+          "semantic_role": "identifier",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 3.35,
+          "length_quantiles": [
+            3,
+            4,
+            4
+          ],
+          "top_values": [
+            "936",
+            "1718",
+            "982",
+            "961",
+            "1670"
+          ]
+        },
+        {
+          "name": "question",
+          "type": "Nullable(String)",
+          "semantic_role": "text",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 974.875,
+          "length_quantiles": [
+            841.5,
+            1990.8000000000002,
+            3705.339999999999
+          ],
+          "top_values": [
+            "A researcher is conducting a comparative study to detect Prostate Specific Antigen (PSA) using two types of label-free sensors: an Aptasensor (represented by panels A and B in Fig A) and an Immunosensor (represented by panels C and D in Fig A). Both sensors are developed using graphene quantum dots-gold nanorods (GQDs-AuNRs) modified screen-printed electrodes.The analytical performance is evaluated by performing Differential Pulse Voltammetry (DPV) at varying concentrations of PSA. The researche... <truncated 601 chars>",
+            "Determine the IUPAC name of compound \\(A\\) formed in the reaction scheme shown in the attached file.\n\nNote: \\(I_2\\) is added at room temperature and then the temperature is elevated to \\(95 ^\\circ C\\). Reaction is carried out in a sealed tube.\n\n\\(1,2-DCE\\) is  1,2-Dichloroethane\n\n\\(BF_3. OEt_2\\) is Boron trifluoride diethyl etherate\n\n\\(Eqv.\\) is equivalents",
+            "The attached multi-panel image shows the reaction schemes for the synthesis of Ligand L, Complex X and Complex Y along with their $^1\\text{H}$ NMR spectra (500 MHz, \\(CDCl_3\\)).\n\nBased on this information, determine the sum total of chloride ligands in complexes X and Y.",
+            "The attached images outline the synthetic process to obtain Ligand C. When an ethanolic solution of Ligand C is treated with an equimolar amount of copper(II) nitrate in an acetonitrile/water mixture, a discrete dicationic complex, D, is formed. \n\nDerive the full, detailed systematic IUPAC name for complex D, utilizing the correct $\\mu$, $\\eta$, and $\\kappa$ notations as required to represent all ligands and their binding modes.",
+            "Using the attached reaction scheme in the multi-panel image, determine the SMILES string of compound P.\n\nNote : \n1. For reaction a), \\(H_2SO_4\\), was added dropwise at \\(0 ^\\circ C\\). After complete addition, the mixture was stirred for \\(5\\ h\\) at \\(40 ^\\circ C\\)\n\n2. For reaction b), Initially mixture was stirred at \\(40\u201360 ^\\circ C\\) and \\(conc. HCl\\) was added after \\(15\\ min\\). Then the solution was stirred for \\(2\\ h\\).\n"
+          ]
+        },
+        {
+          "name": "answer",
+          "type": "Nullable(String)",
+          "semantic_role": "label_or_answer",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 37.775,
+          "length_quantiles": [
+            17,
+            101.70000000000005,
+            168.61999999999998
+          ],
+          "top_values": [
+            "1.05",
+            "(E)-4-(7,8-Dichloro-11H-indeno[1,2-b]quinoxalin-11-ylidene)-2,3-di-p-tolylcyclobut-2-en-1-one ",
+            "4",
+            "[4-(4-methoxyphenyl)-3,5-dimethyl-1,7-di(pyridin-2-yl)-1,7-dihydrodipyrazolo[3,4-b:4',3'-e]pyridine-$\\kappa^3N^{1'},N^{1''},N^8$]copper(II) ion",
+            "\\(OC1=CC=C2C(OC(C(C3=CC=C(C4NC(NC(C)=C4C(OC)=O)=O)C=C3)C2C)=O)=C1\\)"
+          ]
+        },
+        {
+          "name": "format",
+          "type": "Nullable(String)",
+          "semantic_role": "unknown",
+          "profile_mode": "full",
+          "nulls": 0,
+          "empty": 0,
+          "avg_length": 11.275,
+          "length_quantiles": [
+            11,
+            12,
+            12
+          ],
+          "top_values": [
+            "multi_image",
+            "single_image",
+            "multi_panel"
+          ]
+        },
+        {
+          "name": "images",
+          "type": "Array(Tuple(\n    bytes Nullable(String),\n    path Nullable(String)))",
+          "semantic_role": "image",
+          "profile_mode": "full",
+          "nulls": 0,
+          "min_items": 1,
+          "max_items": 4,
+          "avg_items": 1.625
+        }
+      ],
+      "sample_rows": [
+        {
+          "row_idx": 0,
+          "row": {
+            "conversation_id": "306510",
+            "domain": "Math",
+            "subDomain": "Field theory and polynomials",
+            "author_id": "168",
+            "question": "Determine the number of monic primitive irreducible polynomials of degree\n\\[\nd=11ci^{+e}_{2r}(G_4)+ci^{+e}_{2r}(G_1)+ci^{v}_{2r}(G_3)+ci^{+e}_{2r}(G_2)+ci^{-e}_{2r}(G_3)\n\\]\nover the finite field\n\\[\n\\mathbb F_q,\n\\]\nwhere\n\\[\nq=2^{ci^{+e}_{2r}(G_1)+ci^{v}_{2r}(G_3)-ci^{+e}_{2r}(G_2)-ci^{-e}_{2r}(G_3)},\n\\]\nand \\(G_1,G_2,G_3,G_4\\) are the graphs shown in Figures \\(1,2,3,4\\) of the attached image, respectively.\n\nLet \\(G=(V(G),E(G))\\) be a simple graph. A \\(2\\)-rainbow dominating function of \\(G\\) is a... <truncated 842 chars>",
+            "answer": "\\[120\\]",
+            "format": "multi_panel",
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Open-MM-RL/--/eceb05ae7ffe378f3a02884d93ab95a405f6db19/--/default/train/0/images/image-1d100e9.jpg?Expires=1779570338&Signature=v~qsx6yTzMUIyfm78QC68HSre8O7gvClnsI1pCvGqKVJNtsqSlJX6W0I0EtbpCVdzWxB1Lc994l-0v3Gh~9RVBP3Qxl~AWxqr5Ak50kWpHknE3vySGLIuzMLWxsikaFiNjkphkouYTBWXEHtoFL5Z59-6zog2c96C~Zb2FeCTHVTST~2~MPtwTcn8JTnh1s8F1ELZd4gNveftc9hBbXZ7qyL8uAbqbiredOgGBVPkySTHRZJekFWRYoDUaEiYm8U0CVIThxGlRQ6O0gUSN3X5gBjXfDILwRKt8zJAKwiUqAh7... <truncated 70 chars>",
+                "height": 1254,
+                "width": 1254
+              }
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 1,
+          "row": {
+            "conversation_id": "306490",
+            "domain": "Math",
+            "subDomain": "Geometry",
+            "author_id": "168",
+            "question": " Consider the figure shown. Let $a$ denote the area of the shaded region. Define two vectors in $\\mathbb{R}^3$ by \\[ \\mathbf{A} = [1,\\ a,\\ 2],  \\qquad  \\mathbf{B} = [c,\\ 3,\\ 1]. \\] Determine the value of the constant $c$ such that the vectors $\\mathbf{A}$ and $\\mathbf{B}$ are orthogonal.",
+            "answer": "\\[-\\frac{71}{4} \\]",
+            "format": "single_image",
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Open-MM-RL/--/eceb05ae7ffe378f3a02884d93ab95a405f6db19/--/default/train/1/images/image-1d100e9.png?Expires=1779570338&Signature=O9stJkxlpPDeS4ROr542oy~rA9EWHxONtz7opF0WHwptyAN-eO-CCLgeHEBm-6ydGesxxIM24Ko05bE3fXXfzqDCu4UD098uSEmkK-Oa2ftTBkMcNwz-sSd~NOm5NRi8cma110PSHAFcS2wRqcJcXHiuHoDeLUISxIymmx4asBVxd3thBU88iWZdwxAHqNYfXyhKcZWGjp908I6TQ8MHo6gTx3C3UJ~Ynj598hwJNU2uq7vjsU1BZy-rAUK7l2YaHivNtv8tMoJha0TeWxE6Iq0t3RZcn2DxGUUVV0KdXXbNC... <truncated 70 chars>",
+                "height": 157,
+                "width": 317
+              }
+            ]
+          },
+          "truncated_cells": []
+        },
+        {
+          "row_idx": 2,
+          "row": {
+            "conversation_id": "306449",
+            "domain": "Math",
+            "subDomain": "Number theory",
+            "author_id": "1718",
+            "question": "Determine the order of the ideal class group\n\\[\n\\mathrm{Cl}\\!\\left(\\mathbb{Q}(\\sqrt{-N})\\right),\n\\]\nwhere\n\\[\nN=\n\\lambda_{3,2,1}(G_1\\times G_3)^2+\n\\lambda_{3,2,1}(G_1\\times G_2)\\,\n\\lambda_{3,2,1}(G_1\\times G_3)-\n\\lambda_{3,2,1}(G_1\\times G_2)^2,\n\\]\nand \\(G_1,G_2,G_3\\) denote the graphs shown in Figure 1, Figure 2, and Figure 3 of the attached image, respectively.\n\nIn the attached image, the points denote the vertices of the graphs and the line segments joining pairs of points denote the edges.\n\nG... <truncated 762 chars>",
+            "answer": "\\[12\\]",
+            "format": "multi_panel",
+            "images": [
+              {
+                "src": "https://datasets-server.huggingface.co/cached-assets/TuringEnterprises/Open-MM-RL/--/eceb05ae7ffe378f3a02884d93ab95a405f6db19/--/default/train/2/images/image-1d100e9.png?Expires=1779570338&Signature=e7llWno1uBeTEnrwCMPSznLS7FipWwbs8aP2x3f0ew~wU0Yp6jNw7BHfhPtMtGspLSubT2udA-Q2UbfBDuEEoFx5i6QYRCo-xRQ3nZHT8~n4bWAL5wLUG9ly0HTofse5B13HUNA-M6Lu1P05hMhaSDpVBuQ~HfABEC3a62ClkZAj2AHae0Mjh2KPpdyQftxSpsB3qSEaDSQURP9U5dzRIzTNV9jPY2oCToaoGdA98J9sJrwCYGsCv5wlHVY8u8QmBbMwyP~Y9V3phnF8rgg7MxDb46xqQq-abKr9bFneoliqf... <truncated 70 chars>",
+                "height": 629,
+                "width": 465
+              }
+            ]
+          },
+          "truncated_cells": []
+        }
+      ],
+      "parquet_files": {
+        "count": 1,
+        "filenames": [
+          "0000.parquet"
+        ],
+        "total_bytes": 15508203
+      }
+    }
+  ]
+}
